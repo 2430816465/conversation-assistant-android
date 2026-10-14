@@ -11,7 +11,7 @@
 | Android 本地 JUnit | 7 通过，0 失败 / 错误 / 跳过 |
 | Python 工具单元检查 | 44 通过 |
 | Android 仪器测试 APK 编译 | `assembleDebugAndroidTest` 成功；本次未安装运行 |
-| Android lint | 0 错误、3 警告、0 提示 |
+| Android lint | 0 错误、3 警告、2 提示 |
 | 冻结规格 | PRD / Master 原 SHA256 匹配；190 行非空源文索引 |
 | 上游 Skill 与许可 | 11 项锁定资源逐字节 SHA256 匹配 |
 | 新版截图导出脚本 | Python 语法解析通过 |
