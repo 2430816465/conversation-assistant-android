@@ -1,8 +1,29 @@
 # G0 宿主环境报告
 
-## 0.3.3配置检查（2026-10-13晚间，当前）
+## 0.3.7 视觉改版环境（2026-10-15，当前）
 
-无新增依赖或全局配置更改。productVerification成功，核心77＋Android本地7项通过；Python38项本轮重跑通过，lint0错误1警告。APK0.3.3-development/versionCode5，72356334字节，签名通过，SHA256见reports/product/artifact-verification.json。当前ADB无设备，未安装或测试0.3.3手机。真实GET /models HTTP200，官方模型/价格及思考默认值已复核；6组虚构对话真实生成仍待本批Jev例外授权，未调用推理。见CONFIG_AND_DIALOGUE_CHECK_20261013.md。
+沿用JDK17、SDK36、BuildTools35、Gradle8.13/Kotlin2.3.21及原锁定生产依赖。只检测到emulator-5580，qemu=1、Android15/API35 AOSP，实体红米未连接。沿用已有AVD并隐藏启动，无全局Java/BIOS更改。核心87、本地7、Python44项、最终包13项仪器回归、5种布局配置与32组对比度通过；lint0错误3警告2提示。实际安装包哈希与交付一致，详细绑定见 UI_TEST_REPORT_20261015.md。
+
+当前APK0.3.7-preview/versionCode9，73,929,517字节，SHA256 `3d6d5303152d18b3ea74c9bb4ad47f6bd950f783e8adbbcae6d07916fbab2693`。合成界面截图、媒体/OCR与无Key配置测试不等于微信/真实模型验收。没有新增付费调用；手机与真实接口留待后续授权的复测。以下各章节保留历史环境与当时设备事实。
+
+## 0.3.5 App接入环境（2026-10-14，历史）
+
+沿用锁定JDK17、SDK36、BuildTools35、Gradle8.13及依赖，无新增全局配置。核心87、Android本地7、Python44项通过；最终APK实际在API35 AOSP模拟器执行6项仪器测试通过。模拟器与真实红米始终显式指定，不混用；无窗口启动已有AVD，未操作BIOS或全局Java。lint0错误1警告2提示，qa-runner编译、Debug签名通过。
+
+指定红米读取值24122RKC7C/miro，Android16/API36，HyperOS OS3.0.304.0.WOMCNXM，微信8.0.78；营销型号仍未另行核验。正常adb install -r从0.3.2覆盖到0.3.5-development/versionCode7，未卸载，设备base.apk与交付73,114,125字节APK的SHA256一致：`46f0377296c9e0148cb3f2d968c35ba69a88e24666a25c0fd11e4179fbe6e717`。持有人自行解锁，既有6条历史、原件、旧报告及模型配置保留。
+
+本轮手机只测App内主动分析、编辑/复制、报告/证据、导出，真实5次DeepSeek请求含2次格式修复；手机无障碍未开启、自动读取关闭，没有重新进行微信读取。物理手机未运行UIAutomator/instrumentation；模拟器仪器结果不能代替手机。截图、原件、设备标识、Key及导出包留private目录；公开记录只含脱敏状态与哈希。
+
+临时云端授权结束关闭，双Skill开启、Jev关闭。本轮新增usage估算¥0.171421，服务商账单未核对；已停止100组批次没有恢复，4笔未知费用保留预留。当前真机报告见APP_INTEGRATION_TEST_20261014.md。以下章节为各时间的历史快照。
+
+## 0.3.4双Skill默认配置（2026-10-14，历史）
+
+沿用锁定JDK17/SDK36/BuildTools35/Gradle8.13及依赖，无新增全局配置。productVerification成功：核心80、Android本地7；Python40项通过，合计127项工程检查。lint0错误1警告2提示。实际APK versionCode6 / 0.3.4-development，72626409字节，Debug签名通过，SHA256 `73e4e452a34b2e8c17ac35971c64424405dba8e3d7880167ef0e6171813dcb1d`。09:47 ADB列表为空，未安装或测试0.3.4真机。09:48:18真实GET /models HTTP200；当前真实小样本及计费见DUAL_SKILL_TEST_20261014.md。下文数字只对应历史时间。
+
+
+## 0.3.3配置检查（2026-10-13晚间，历史）
+
+无新增依赖或全局配置更改。productVerification成功，核心77＋Android本地7项通过；Python38项本轮重跑通过，lint0错误1警告。APK0.3.3-development/versionCode5，72356334字节，签名通过，SHA256见DELIVERY_0.3.3.md（历史）。当时ADB无设备，未安装或测试0.3.3手机。真实GET /models HTTP200，官方模型/价格及思考默认值已复核；6组虚构对话真实生成仍待本批Jev例外授权，未调用推理。见CONFIG_AND_DIALOGUE_CHECK_20261013.md。
 
 ## 0.3.2与真实接口重测（2026-10-13，历史）
 

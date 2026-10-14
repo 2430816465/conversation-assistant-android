@@ -13,9 +13,28 @@ import java.io.File
 /** Synthetic data only. Running on an emulator does not count as WeChat or Redmi acceptance. */
 @RunWith(AndroidJUnit4::class)
 class VaultDeviceTest {
+    @Test fun duplicateLoginNamesAreRejectedAndPasswordChangePreservesOwnedData() {
+        val context=ApplicationProvider.getApplicationContext<Context>(); val vault=Vault(context)
+        val name="SYNTHETIC-"+newId().take(8); val initial="synthetic-password"; val next="synthetic-new-password"
+        val pin=initial.toCharArray(); val a=vault.createAccount("  $name  ",pin)
+        assertEquals(name,a.name); assertTrue(pin.all { it=='\u0000' })
+        try {
+            try { vault.createAccount(name.lowercase(),initial.toCharArray()); fail("Ambiguous login name must be rejected") } catch(expected: IllegalArgumentException) { }
+            val host=vault.createStreamer(a.id,"合成主播"); val contact=vault.createContact(host,"合成观众")
+            val oldChars=initial.toCharArray(); val newChars=next.toCharArray()
+            vault.changePassword(a,oldChars,newChars)
+            assertTrue(oldChars.all { it=='\u0000' }); assertTrue(newChars.all { it=='\u0000' })
+            vault.lock()
+            try { vault.unlock(a,initial.toCharArray()); fail("Old password must not work") } catch(expected: IllegalStateException) { }
+            android.os.SystemClock.sleep(1_100)
+            vault.unlock(a,next.toCharArray())
+            assertEquals(contact,vault.conversation(contact.scope)); assertEquals(host,vault.streamers(a.id).single())
+            assertEquals(1,vault.accounts().count { it.account.id==a.id })
+        } finally { if(vault.unlocked!=a.id) { android.os.SystemClock.sleep(1_100); vault.unlock(a,next.toCharArray()) }; vault.deleteAccount(a) }
+    }
     @Test fun encryptedRestartAndStrictAccountIsolation() {
         val context=ApplicationProvider.getApplicationContext<Context>(); val vault=Vault(context)
-        val a=vault.createAccount("SYNTHETIC-"+newId(),"test-pin-alpha".toCharArray())
+        val a=vault.createAccount("SYNTHETIC-"+newId().take(8),"test-pin-alpha".toCharArray())
         val host=vault.createStreamer(a.id,"合成主播"); val contact=vault.createContact(host,"同名观众")
         val second=vault.createContact(host,"同名观众"); assertNotEquals(contact.scope.contactId,second.scope.contactId)
         val raw="SYNTHETIC_PRIVATE_CHAT_"+newId(); val e=Evidence(scope=contact.scope,batchId="synthetic",kind=SourceKind.MANUAL,raw=raw,sha256=sha256(raw.toByteArray()))
@@ -27,13 +46,13 @@ class VaultDeviceTest {
         val restarted=Vault(context); restarted.unlock(a,"test-pin-alpha".toCharArray())
         assertEquals(raw,restarted.conversation(contact.scope).messages.single().body)
         assertEquals(config.apiKey,restarted.settings(host).profiles.single().apiKey)
-        val b=restarted.createAccount("SYNTHETIC-"+newId(),"test-pin-beta".toCharArray())
+        val b=restarted.createAccount("SYNTHETIC-"+newId().take(8),"test-pin-beta".toCharArray())
         try { restarted.conversation(contact.scope); fail("Cross-account query must fail") } catch(expected: IllegalArgumentException) { }
         restarted.deleteAccount(b); restarted.unlock(a,"test-pin-alpha".toCharArray()); restarted.deleteAccount(a)
     }
     @Test fun encryptedMediaRoundTripAndDeletion() {
         val context=ApplicationProvider.getApplicationContext<Context>(); val vault=Vault(context)
-        val a=vault.createAccount("SYNTHETIC-"+newId(),"test-pin-media".toCharArray()); val host=vault.createStreamer(a.id,"合成主播"); val c=vault.createContact(host,"合成观众")
+        val a=vault.createAccount("SYNTHETIC-"+newId().take(8),"test-pin-media".toCharArray()); val host=vault.createStreamer(a.id,"合成主播"); val c=vault.createContact(host,"合成观众")
         val source=File(context.cacheDir,"synthetic-media-"+newId()); val original=ByteArray(256*1024) { (it%251).toByte() }; source.writeBytes(original)
         try {
             val blob=vault.importBlob(c.scope,Uri.fromFile(source)); assertEquals(sha256(original),blob.sha256); assertEquals(original.size.toLong(),blob.bytes)

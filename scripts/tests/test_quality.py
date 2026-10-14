@@ -8,10 +8,25 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import prepare_quality
+import prepare_quality_v2
 import score_quality
 
 
 class QualityTest(unittest.TestCase):
+    def test_varied_benchmark_preserves_truth_and_scope(self):
+        cases = prepare_quality_v2.build()
+        self.assertEqual(100, len(cases))
+        self.assertGreaterEqual(len({c['conversation']['messages'][-1]['body'] for c in cases}), 80)
+        for case in cases:
+            c = case['conversation']; ids = {m['id'] for m in c['messages']}
+            self.assertEqual('SYNTHETIC_STYLE_NOT_REAL_HOST', case['style_provenance'])
+            self.assertTrue(set(case['rubric']['key_message_ids']).issubset(ids))
+            self.assertTrue(all(m['scope'] == c['contact']['scope'] for m in c['messages']))
+            self.assertEqual(hashlib.sha256(c['evidence'][0]['raw'].encode()).hexdigest(), c['evidence'][0]['sha256'])
+            if case['category'] == 'long_history':
+                self.assertEqual(1000, len(c['messages']))
+                self.assertIn('生日', c['messages'][34]['body'])
+                self.assertIn('体检', c['messages'][898]['body'])
     def test_synthetic_cases_explicitly_marked_and_unique(self):
         cases = [prepare_quality.make_case(i * 10 + j + 1, category, j) for i, category in enumerate(prepare_quality.CATEGORIES) for j in range(10)]
         self.assertEqual(100, len({c['id'] for c in cases}))
@@ -111,6 +126,36 @@ class QualityTest(unittest.TestCase):
     def test_scores_from_different_outputs_cannot_pass(self):
         with tempfile.TemporaryDirectory() as directory:
             root, rows = self.fixture(directory); rows[3]['grading_sha256'] = 'different-outputs'
+            with self.assertRaises(ValueError): score_quality.evaluate(root, self.write_scores(root, rows))
+
+    def mark_failure_fixture(self, root, rows):
+        # Tool arithmetic only. Never used as real provider or human quality evidence.
+        p = root / 'SYN-000-full-audit.json'; audit = json.loads(p.read_text())
+        audit.update(generation_status='FAILED', real_interface_calls=True, components=[])
+        p.write_text(json.dumps(audit))
+        p = root / 'grading/SYN-000.json'; pair = json.loads(p.read_text())
+        pair['B'] = dict(generation_status='FAILED', candidates=[], no_reply=False)
+        p.write_text(json.dumps(pair)); digest = hashlib.sha256(p.read_bytes()).hexdigest()
+        p = root / 'blind-mapping.json'; mapping = json.loads(p.read_text()); mapping['rows'][0]['grading_sha256'] = digest; p.write_text(json.dumps(mapping))
+        for row in rows[:2]: row['grading_sha256'] = digest
+
+    def test_failed_real_generation_counts_in_original_100(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root, rows = self.fixture(directory); self.mark_failure_fixture(root, rows)
+            for key in score_quality.CRITERIA: rows[1][key] = '0'
+            for key in score_quality.RATINGS: rows[1][key] = '1'
+            report = score_quality.evaluate(root, self.write_scores(root, rows))
+            self.assertEqual(99, report['passed']['full']); self.assertEqual(100, report['passed']['ordinary'])
+
+    def test_failure_cannot_receive_usable_score(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root, rows = self.fixture(directory); self.mark_failure_fixture(root, rows)
+            with self.assertRaises(ValueError): score_quality.evaluate(root, self.write_scores(root, rows))
+
+    def test_failure_without_real_calls_cannot_be_counted(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root, rows = self.fixture(directory); self.mark_failure_fixture(root, rows)
+            p = root / 'SYN-000-full-audit.json'; audit = json.loads(p.read_text()); audit['real_interface_calls'] = False; p.write_text(json.dumps(audit))
             with self.assertRaises(ValueError): score_quality.evaluate(root, self.write_scores(root, rows))
 
 

@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.setValue
 import cn.xindong.core.*
 import com.google.mlkit.vision.common.InputImage
@@ -25,7 +26,18 @@ class ProductController(private val app: JunshiApp) {
     var contacts by mutableStateOf<List<Conversation>>(emptyList()); private set
     var current by mutableStateOf<Conversation?>(null); private set
     var settings by mutableStateOf(AiSettings()); private set
+    // Form drafts live only in this process; API keys are never put in saved-instance bundles.
+    val settingsDraft=mutableStateOf(AiSettings())
+    val interfaceDraft=mutableStateOf(blankInterface())
+    var interfaceEditorOpen by mutableStateOf(false); private set
+    private fun blankInterface()=ModelConfig(name="",endpoint="https://api.deepseek.com/chat/completions",model="",apiKey="")
+    fun editInterface(profile: ModelConfig?=null) { interfaceDraft.value=profile ?: blankInterface(); interfaceEditorOpen=true }
+    fun closeInterface() { interfaceEditorOpen=false; interfaceDraft.value=blankInterface() }
+    private val reviewDrafts=mutableMapOf<String,MutableState<ImportBatch>>()
+    fun reviewDraft(batch: ImportBatch): MutableState<ImportBatch> = reviewDrafts.getOrPut(batch.id) { mutableStateOf(batch) }
     var status by mutableStateOf("正在打开本地加密仓库"); private set
+    var authenticationError by mutableStateOf<String?>(null); private set
+    var passwordChanged by mutableStateOf(false); private set
     var busy by mutableStateOf(false); private set
     var generating by mutableStateOf(false); private set
     var result by mutableStateOf<RoundResult?>(null); private set
@@ -43,27 +55,46 @@ class ProductController(private val app: JunshiApp) {
         work({ vault.accounts().map { it.account } }) { accounts=it; status="开发版：手机稳定性和真实AI质量尚待验收" }
     }
     private fun invalidate() { app.session.invalidate(); result=null; components=emptyList(); generating=false; ReadBridge.candidates=emptyList(); ChatReadService.current?.invalidatePanel(preserveMenu=true) }
-    private fun <T> work(task: ()->T, done: (T)->Unit = {}) {
+    private fun <T> work(task: ()->T, failed: (String)->Unit = {}, done: (T)->Unit = {}) {
         beginWork()
         val ownerAtStart=ownerRevision
         app.io.execute {
             try { val value=task(); main.post { endWork(); if(ownerRevision==ownerAtStart) done(value) } }
-            catch(e: Exception) { main.post { endWork(); if(ownerRevision==ownerAtStart) status=AnalysisEngine.safeError(e) } }
+            catch(e: Exception) { main.post { endWork(); if(ownerRevision==ownerAtStart) { status=AnalysisEngine.safeError(e); failed(status) } } }
         }
     }
-    fun createAccount(name: String, pin: String) = work({ vault.createAccount(name,pin.toCharArray()) }) { account=it; accounts=accounts+it; streamers=emptyList(); status="账户已创建，请建立主播档案" }
-    fun unlock(a: Account, pin: String) = work({ vault.unlock(a,pin.toCharArray()); vault.streamers(a.id) }) { account=a; streamers=it; status="已解锁，请选择主播" }
-    fun lock() { ownerRevision++; invalidate(); ReadBridge.select(null); ChatReadService.current?.hide(); vault.lock(); account=null; streamer=null; current=null; streamers=emptyList(); contacts=emptyList(); settings=AiSettings(); rounds=emptyList(); charges=emptyList(); status="已锁定本地账户" }
+    fun clearAuthenticationError() { authenticationError=null; passwordChanged=false }
+    fun createAccount(name: String, pin: String) {
+        clearAuthenticationError()
+        work({ vault.createAccount(name,pin.toCharArray()) },failed={ authenticationError=it }) {
+            account=it; accounts=accounts+it; streamers=emptyList(); status="账户已创建，请建立主播档案"
+        }
+    }
+    fun unlock(a: Account, pin: String) {
+        clearAuthenticationError()
+        work({ vault.unlock(a,pin.toCharArray()); vault.streamers(a.id) },failed={ authenticationError=it }) {
+            account=a; streamers=it; status="已登录，请选择主播"
+            if(it.size==1) selectStreamer(it.single())
+        }
+    }
+    fun changePassword(old: String, next: String) {
+        val a=account ?: return
+        clearAuthenticationError()
+        work({ vault.changePassword(a,old.toCharArray(),next.toCharArray()) },failed={ authenticationError=it }) {
+            passwordChanged=true; status="账户密码已修改，下次登录请使用新密码"
+        }
+    }
+    fun lock() { ownerRevision++; invalidate(); ReadBridge.select(null); ChatReadService.current?.hide(); vault.lock(); account=null; streamer=null; current=null; streamers=emptyList(); contacts=emptyList(); settings=AiSettings(); settingsDraft.value=AiSettings(); closeInterface(); reviewDrafts.clear(); rounds=emptyList(); charges=emptyList(); authenticationError=null; passwordChanged=false; status="已退出，账户资料已锁定" }
     fun createStreamer(name: String) { val a=account ?: return; work({ vault.createStreamer(a.id,name) }) { streamers=streamers+it; selectStreamer(it) } }
     fun selectStreamer(s: Streamer) {
         require(s.accountId==account?.id) { "主播不属于已解锁账户" }
-        invalidate(); ReadBridge.select(null); app.session.select(null); streamer=s; current=null; contacts=emptyList(); rounds=emptyList()
-        work({ vault.conversations(s) to vault.settings(s) }) { if(streamer==s) { contacts=it.first; settings=it.second; refreshFees(); status="已选择主播 ${s.name}" } }
+        invalidate(); ReadBridge.select(null); app.session.select(null); closeInterface(); reviewDrafts.clear(); streamer=s; current=null; contacts=emptyList(); rounds=emptyList(); settings=AiSettings(); settingsDraft.value=settings
+        work({ vault.conversations(s) to vault.settings(s) }) { if(streamer==s) { contacts=it.first; settings=it.second; settingsDraft.value=it.second; refreshFees(); status="已选择主播 ${s.name}"; if(contacts.size==1) selectContact(contacts.single()) } }
     }
     fun createContact(name: String) { val s=streamer ?: return; work({ vault.createContact(s,name) }) { if(streamer==s) { contacts=contacts+it; selectContact(it) } } }
     fun selectContact(c: Conversation) {
         require(c.scope.accountId==account?.id && c.scope.streamerId==streamer?.id) { "观众不属于当前主播" }
-        invalidate(); ReadBridge.select(c.scope,c.contact.name); app.session.select(c.scope); current=c; rounds=emptyList()
+        invalidate(); reviewDrafts.clear(); ReadBridge.select(c.scope,c.contact.name); app.session.select(c.scope); current=c; rounds=emptyList()
         work({ vault.rounds(c.scope) }) { if(current?.scope==c.scope) rounds=it }
     }
     fun mutate(change: (Conversation)->Conversation) {
@@ -173,7 +204,7 @@ class ProductController(private val app: JunshiApp) {
         c.copy(evidence=c.evidence+e,messages=c.messages+Message(scope=c.scope,order=(c.messages.maxOfOrNull { it.order } ?: 0)+1,
             speaker=Speaker.STREAMER,body=text,time=OffsetDateTime.now().toString(),evidenceIds=listOf(e.id),actualSent=true))
     }
-    fun saveSettings(next: AiSettings) { val s=streamer ?: return; work({ vault.saveSettings(s,next) }) { if(streamer==s) { settings=next; invalidate(); status="模型设置已保存，下次生成采用新配置" } } }
+    fun saveSettings(next: AiSettings) { val s=streamer ?: return; work({ vault.saveSettings(s,next) }) { if(streamer==s) { settings=next; settingsDraft.value=next; invalidate(); status="模型设置已保存，下次生成采用新配置" } } }
     fun generate(query: String, replyTarget: ReplyTarget? = current?.let { ReplyTarget.lastReviewed(it) }) {
         if(generating || busy) return
         val c=current ?: return; val s=streamer ?: return; val config=settings

@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-15",
+  "captured_at": "2026-10-15T01:51:25+08:00",
+  "repository": "conversation-assistant-android",
+  "source_version": "0.3.7-preview (versionCode 9)",
+  "selected_source_files": 199,
+  "source_comparison": "All selected files matched current main working directory after ignoring only UTF-8 BOM and CRLF/LF differences.",
+  "added_source_files": 49,
+  "updated_source_files": 35,
+  "inventory_sha256": "70f9f81dd66d9cb426bfeaa9d9b5b6bbf25cd2c163a6c01d32cb59269fb1961a",
+  "scope": "Independent project source and engineering documents; original private databases, credentials, model weights, caches and local delivery archives not published."
+}

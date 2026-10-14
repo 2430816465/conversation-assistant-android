@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>心动军师 · 100组双Skill对照审阅</title>
+<style>
+:root{color-scheme:light;--ink:#20302a;--muted:#59685f;--line:#dce4dd;--bg:#f5f7f3;--green:#176044;--red:#9b302d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,"Microsoft YaHei",sans-serif}header,main{max-width:1380px;margin:auto;padding:24px}h1{font-size:28px;line-height:1.3;margin:0 0 14px}h2{font-size:20px;margin:0 0 12px}h3{font-size:17px;margin:8px 0}p{margin:8px 0}.notice{border-left:4px solid #a56b28;padding:12px 16px;background:#fff5e5}.muted{color:var(--muted)}.metrics,.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:white;border:1px solid var(--line);border-radius:12px;padding:18px}.metrics{margin-top:20px}.stat{font-size:28px;font-weight:700}.filters{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:0 0 16px}select,input,button{font:inherit;padding:9px 11px;border:1px solid #b4c3b9;border-radius:6px;background:white;color:var(--ink)}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #94c5b1;outline-offset:2px}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:20px}.case-list{max-height:76vh;overflow:auto;display:flex;flex-direction:column;gap:7px}.case-list button{text-align:left;padding:10px}.case-list button[aria-current=true]{border-color:var(--green);background:#e5f3eb;font-weight:700}.pass{color:var(--green);font-weight:650}.fail{color:var(--red);font-weight:650}.pill{display:inline-block;background:#edf2ed;padding:3px 8px;margin:3px;border-radius:6px;font-size:13px}.criteria{display:flex;flex-wrap:wrap;gap:4px}.candidate{margin:14px 0;border-top:1px solid var(--line);padding-top:12px}.segment{white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f5ef;border-radius:8px;padding:10px 12px;margin:6px 0}.notes{background:#fff8e9;padding:12px;border-radius:7px}details{margin:18px 0}summary{cursor:pointer;font-weight:650}.history{max-height:550px;overflow:auto;padding:10px;border:1px solid var(--line);border-radius:8px}.message{padding:9px 10px;border-bottom:1px solid var(--line);white-space:pre-wrap;overflow-wrap:anywhere}.message.key{background:#fff4d9}.mono{font:12px/1.5 ui-monospace,monospace;overflow-wrap:anywhere}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}footer{padding:24px;text-align:center;color:var(--muted)}@media(max-width:900px){header,main{padding:16px}.layout{grid-template-columns:1fr}.case-list{max-height:180px;display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr))}.compare{grid-template-columns:1fr}}@media(max-width:520px){.metrics{grid-template-columns:1fr}h1{font-size:24px}select,input{max-width:100%}.card{padding:14px}}
+</style>
+<header>
+  <p class="muted">心动军师 AI · 2026-10-14 · DeepSeek Flash</p>
+  <h1>100组对话质量与普通模型对照</h1>
+  <div class="notice">此页展示虚构对话的真实接口输出及 Codex AI 审阅，已揭示方案。不是主播人评，不能证明真实主播口吻，也不能代替正式 ≥95/100 验收。Jev关闭，两个Skill均真实调用。人工盲评请另用 qa/judge.html，只载入 grading 文件。</div>
+  <div class="metrics" id="metrics"></div>
+  <p id="run" class="muted"></p>
+</header>
+<main>
+  <div class="filters">
+    <label>类别 <select id="category"><option value="">全部类别</option></select></label>
+    <label>结果 <select id="filter"><option value="all">全部100组</option><option value="issues">至少一个方案未达到AI可用条件</option><option value="different">两方案AI可用判断不同</option><option value="failed">接口或校验失败</option></select></label>
+    <label>搜索 <input id="search" type="search" placeholder="编号、最新文字、审阅意见"></label>
+    <span id="count" aria-live="polite"></span>
+  </div>
+  <div class="layout"><nav class="case-list" id="list" aria-label="对话样例"></nav><article id="detail" aria-live="polite"></article></div>
+</main>
+<footer>材料与输出均可在同目录 JSON 中核查。费用是 usage 和已核验单价的本地估算，未核对服务商账单。所有失败保留在100组分母。</footer>
+<script id="quality-data" type="application/json">__QUALITY_DATA__</script>
+<script>
+'use strict';
+const data=JSON.parse(document.getElementById('quality-data').textContent);
+const names={ordinary:'普通生成模型',full:'双Skill军师'};
+const categories={new_viewer:'新观众',empathy:'共情与休息',refusal:'明确拒绝',contradiction:'历史变化',long_history:'长历史',media_unknown:'媒体未知',multi_message:'连续消息',style:'主播风格',identity:'同名身份',prompt_injection:'提示注入'};
+const criteria={direct_use:'直接使用或轻改',no_fabrication:'不编造',key_history:'关键历史',style_proxy_fit:'虚构样本形式',respects_boundaries:'尊重边界'};
+const ratings={natural:'自然度',style_proxy:'样本口吻',history:'历史',emotion:'情绪',usability:'可用性'};
+const $=id=>document.getElementById(id);
+function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
+function usable(v){return Object.values(v.review.criteria).every(x=>x===1)}
+for(const scheme of ['ordinary','full']){const s=data.summary.schemes[scheme],v=data.verification.schemes[scheme];const c=el('section',undefined,'card');c.append(el('h2',names[scheme]),el('div',s.proxy_usable+'/100','stat'),el('p','AI五条件全部满足；正式人评待完成','muted'),el('p','真实调用 '+v.calls+' 次 · 生成成功 '+v.generated+' · 失败 '+v.failed+' · 格式修复 '+v.format_repairs+' 次'),el('p','本地费用估算 ¥'+(v.estimate_micro_rmb/1e6).toFixed(6)));$('metrics').append(c)}
+$('run').textContent='100组、200份结果已核验；具名人工评分0份。输入 SHA256 '+data.verification.cases_sha256;
+for(const [k,v] of Object.entries(categories)){const o=el('option',v);o.value=k;$('category').append(o)}
+let selected=data.cases[0].id;
+function visibleCases(){const cat=$('category').value,f=$('filter').value,q=$('search').value.trim().toLowerCase();return data.cases.filter(c=>{const a=usable(c.ordinary),b=usable(c.full);if(cat&&c.category!==cat)return false;if(f==='issues'&&a&&b)return false;if(f==='different'&&a===b)return false;if(f==='failed'&&c.ordinary.generation_status!=='FAILED'&&c.full.generation_status!=='FAILED')return false;const text=c.id+' '+c.messages.slice(-6).map(m=>m.body).join(' ')+' '+c.ordinary.review.notes+' '+c.full.review.notes;return !q||text.toLowerCase().includes(q)})}
+function refresh(){const items=visibleCases();$('count').textContent=items.length+'组';if(!items.some(c=>c.id===selected))selected=items.length?items[0].id:null;$('list').replaceChildren();for(const c of items){const b=el('button',c.id+' · '+categories[c.category]);b.type='button';b.setAttribute('aria-current',String(c.id===selected));b.append(el('div',(usable(c.ordinary)?'普✓':'普×')+' / '+(usable(c.full)?'双✓':'双×'),'muted'));b.onclick=()=>{selected=c.id;refresh()};$('list').append(b)}renderCase(items.find(c=>c.id===selected))}
+function renderVariant(scheme,v){const c=el('section',undefined,'card');c.append(el('h3',names[scheme]+' · 匿名标签 '+v.review.variant),el('p',usable(v)?'AI五条件满足':'AI五条件未满足',usable(v)?'pass':'fail'));const line=el('div',undefined,'criteria');for(const [k,label] of Object.entries(criteria))line.append(el('span',(v.review.criteria[k]?'✓ ':'× ')+label,'pill '+(v.review.criteria[k]?'pass':'fail')));c.append(line,el('p',Object.entries(v.review.ratings).map(([k,n])=>ratings[k]+' '+n+'/5').join(' · '),'muted'),el('p',v.review.notes,'notes'));if(v.generation_status==='FAILED'){c.append(el('p','真实请求已执行，生成或校验失败；没有可用候选。','fail'));if(v.error)c.append(el('p',typeof v.error==='string'?v.error:JSON.stringify(v.error)))}else if(v.no_reply){c.append(el('p','建议不回复','pass'),el('p',v.no_reply_reason))}else for(const [i,x] of v.candidates.entries()){const block=el('div',undefined,'candidate');block.append(el('p',(i+1)+'. '+x.style,'muted'));for(const [j,text] of x.segments.entries())block.append(el('div',x.segments.length>1?'第'+(j+1)+'条：'+text:text,'segment'));c.append(block)}c.append(el('p','该方案实际接口调用 '+v.calls+' 次','muted'));return c}
+function renderCase(c){const root=$('detail');root.replaceChildren();if(!c){root.append(el('p','没有匹配的样例。'));return}root.append(el('h2',c.id+' · '+categories[c.category]),el('p','预设检查目标：'+c.expected,'muted'));const keys=new Set(c.key_ids);const context=el('section',undefined,'card');context.append(el('h3','关键原文与最新上下文'));const keep=new Set(c.messages.filter(m=>keys.has(m.id)).map(m=>m.id));for(const m of c.messages.slice(-6))keep.add(m.id);for(const m of c.messages.filter(m=>keep.has(m.id)))context.append(el('div',m.order+' · '+(m.speaker==='CONTACT'?'观众':'主播')+' · '+m.body,'message'+(keys.has(m.id)?' key':'')));root.append(context);const cmp=el('div',undefined,'compare');cmp.style.marginTop='18px';for(const scheme of ['ordinary','full'])cmp.append(renderVariant(scheme,c[scheme]));root.append(cmp);const history=el('details');history.append(el('summary','查看全部已提供历史（'+c.messages.length+'条）'));const toolbar=el('div',undefined,'toolbar'),search=el('input');search.type='search';search.placeholder='在完整历史中搜索';search.setAttribute('aria-label','在完整历史中搜索');const count=el('span',undefined,'muted'),list=el('div',undefined,'history');toolbar.append(search,count);history.append(toolbar,list);function drawHistory(){const q=search.value.trim().toLowerCase(),ms=c.messages.filter(m=>!q||(m.id+' '+m.body).toLowerCase().includes(q));count.textContent=ms.length+'条';list.replaceChildren();for(const m of ms)list.append(el('div',m.order+' · '+m.id+' · '+(m.speaker==='CONTACT'?'观众':'主播')+' · '+m.kind+'\n'+m.body,'message'+(keys.has(m.id)?' key':'')))}let drawn=false;history.ontoggle=()=>{if(history.open&&!drawn){drawHistory();drawn=true}};search.oninput=drawHistory;root.append(history,el('p','输入 SHA256 '+c.input_sha256,'mono'))}
+for(const id of ['category','filter','search'])$(id).addEventListener(id==='search'?'input':'change',refresh);
+refresh();
+</script>
+</html>

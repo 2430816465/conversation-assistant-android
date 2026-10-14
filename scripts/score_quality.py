@@ -50,16 +50,29 @@ def evaluate(run, scores):
         if full_audit.get("case_input_sha256") != mapping["input_sha256"] or plain_audit.get("input_sha256") != mapping["input_sha256"]:
             raise ValueError("Missing matching real-call audits")
         states = {c["name"]: c["state"] for c in full_audit.get("components", [])}
-        if any(states.get(name) != "SUCCEEDED" for name in required_components):
+        full_failed = full_audit.get("generation_status") == "FAILED"
+        plain_failed = plain_audit.get("generation_status") == "FAILED"
+        if full_failed and (full_audit.get("real_interface_calls") is not True or full_audit.get("result") is not None):
+            raise ValueError("Failure outcome requires real-call evidence and no adopted result")
+        if plain_failed and (plain_audit.get("real_interface_calls") is not True or plain_audit.get("result") is not None):
+            raise ValueError("Failure outcome requires real-call evidence and no adopted result")
+        if not full_failed and any(states.get(name) != "SUCCEEDED" for name in required_components):
             raise ValueError("Selected architecture did not run all required components")
-        if architecture == "DUAL_SKILL_V1" and states.get("Jev") != "USER_DISABLED":
+        if architecture == "DUAL_SKILL_V1" and not full_failed and states.get("Jev") != "USER_DISABLED":
             raise ValueError("Dual-Skill experiment must explicitly record Jev disabled")
         totals = {}
         for scheme in passed:
             row = indexed[(case_id, mapping[scheme])]
             if row.get("input_sha256") != mapping["input_sha256"]: raise ValueError("Human scores belong to a different input/run")
             if row.get("grading_sha256") != mapping["grading_sha256"]: raise ValueError("Human scores belong to different A/B outputs")
-            passed[scheme] += int(all(row[c].strip() == "1" for c in CRITERIA))
+            failed = full_failed if scheme == "full" else plain_failed
+            if failed:
+                variant = pair.get(mapping[scheme], {})
+                if variant.get("generation_status") != "FAILED" or variant.get("candidates") or variant.get("no_reply") is not False:
+                    raise ValueError("A generation failure cannot be disguised as a valid reply or no-reply decision")
+                if any(row[c].strip() != "0" for c in CRITERIA) or any(row[c].strip() != "1" for c in RATINGS):
+                    raise ValueError("Generation failure must receive all-zero usability decisions and minimum comparative ratings")
+            passed[scheme] += int(not failed and all(row[c].strip() == "1" for c in CRITERIA))
             for metric in RATINGS: averages[scheme][metric] += int(row[metric])
             totals[scheme] = sum(int(row[c]) for c in RATINGS)
         preferences["tie" if totals["full"] == totals["ordinary"] else max(totals, key=totals.get)] += 1

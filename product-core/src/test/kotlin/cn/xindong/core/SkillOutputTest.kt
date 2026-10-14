@@ -39,7 +39,13 @@ class SkillOutputTest {
         assertEquals(sha256("```json\n$privateFixture\n```".toByteArray()),failure.diagnostic.getString("content_sha256"))
         assertFalse(failure.diagnostic.has("content"))
     }
-    @Test fun invalidComponentStopsPipelineWithoutRetryAndPreservesKnownUsageCharge() {
+    @Test fun regressionExtraStrategyBracketIsRejectedAndStyleMetadataDoesNotNeedInventedFact() {
+        val bad=valid.replace("\"strategy\":\"SYNTHETIC_STRATEGY\",","\"strategy\":\"SYNTHETIC_STRATEGY\"],")
+        assertEquals("INVALID_JSON",rejected(bad).code)
+        val unknown=JSONObject(valid).put("facts",arr(emptyList<Any>())).put("unknowns",arr(listOf("语音转写未提供；风格统计不作为聊天事实")))
+        assertEquals(0,SkillOutput.parse("恋爱大师",unknown.toString(),setOf("m1")).getJSONArray("facts").length())
+    }
+    @Test fun invalidComponentStopsAfterOneFormatRepairAndPreservesBothUsageCharges() {
         for(body in listOf("", "{\"facts\":[]}")) {
             var calls=0
             val gateway=object: Gateway {
@@ -60,10 +66,10 @@ class SkillOutputTest {
                 AnalysisEngine(gateway,ledger,SkillLibrary("fixture skill","fixture skill")).run(c,Streamer("fixture-host","fixture-account","fixture"),listOf(c),settings,"fixture",CancelToken(),component={ states.add(it) })
                 fail("Invalid output must not become a saved round or reach final generation")
             } catch(_: SkillOutputFailure) { /* Expected; fixture is deliberately invalid. */ }
-            assertEquals(1,calls); assertEquals("FAILED",states.last().state); assertNotNull(states.last().diagnostic)
+            assertEquals(2,calls); assertEquals("FAILED",states.last().state); assertNotNull(states.last().diagnostic)
             assertFalse(states.any { it.name=="恋爱大师" })
-            assertEquals("TOKEN_ESTIMATE",ledger.entries().single().state)
-            assertEquals(32374L,ledger.entries().single().chargedMicro)
+            assertEquals(2,ledger.entries().size); assertTrue(ledger.entries().all { it.state=="TOKEN_ESTIMATE" })
+            assertEquals(64748L,ledger.entries().sumOf { it.chargedMicro })
         }
     }
 }

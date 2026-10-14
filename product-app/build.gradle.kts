@@ -11,11 +11,11 @@ android {
         applicationId = "cn.xindong.junshi"
         minSdk = 30
         targetSdk = 35
-        versionCode = 6
-        versionName = "0.3.4-development"
+        versionCode = 9
+        versionName = "0.3.7-preview"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildFeatures { compose = true }
+    buildFeatures { compose = true; buildConfig = true }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

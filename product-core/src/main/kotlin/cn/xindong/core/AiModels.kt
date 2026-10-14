@@ -87,10 +87,10 @@ interface Budget {
     fun settle(id: String, usage: Usage?, model: ModelConfig, rejectedBeforeInference: Boolean = false)
 }
 /** Caller persists every mutation atomically. Uncertain calls remain counted and block another call. */
-class Ledger(initial: List<Charge> = emptyList(), initialLimits: Map<String,Long> = emptyMap(),
+class Ledger(initial: List<Charge> = emptyList(), initialLimits: Map<String,Long> = emptyMap(), private val maxInFlight: Int = 1,
     private val persist: (List<Charge>,Map<String,Long>)->Unit = { _,_-> }): Budget {
     private var rows=initial.map { if(it.state=="RESERVED") it.copy(state="UNCERTAIN") else it }; private var limits=initialLimits.toMap()
-    init { require(rows.all { it.reservedMicro>=0 && it.chargedMicro>=0 }); if(rows!=initial) persist(rows,limits) }
+    init { require(maxInFlight in 1..4); require(rows.all { it.reservedMicro>=0 && it.chargedMicro>=0 }); if(rows!=initial) persist(rows,limits) }
     @Synchronized fun entries(): List<Charge> = rows.toList()
     @Synchronized fun spent(month: String): Long = rows.filter { it.month==month }.fold(0L) { a,c -> Math.addExact(a,c.chargedMicro) }
     @Synchronized fun limit(month: String): Long = limits[month] ?: 100_000_000L
@@ -108,7 +108,8 @@ class Ledger(initial: List<Charge> = emptyList(), initialLimits: Map<String,Long
     }
     @Synchronized override fun reserve(owner: String, component: String, model: ModelConfig, upperInput: Int): String {
         model.validate(); require(upperInput>=0)
-        require(rows.none { it.state in listOf("RESERVED","UNCERTAIN") }) { "存在用量未知的调用，请先在费用页核对账单，不能按零元继续" }
+        require(rows.none { it.state=="UNCERTAIN" }) { "存在用量未知的调用，请先在费用页核对账单，不能按零元继续" }
+        require(rows.count { it.state=="RESERVED" }<maxInFlight) { "正在执行的调用已达到配置上限，请等待结束" }
         val month=Costing.month(System.currentTimeMillis()); val cost=Costing.microRmb(model,Usage(upperInput.toLong(),model.outputTokens.toLong()))
         require(Math.addExact(spent(month),cost)<limit(month)) { "本轮保守费用将达到已确认的月度额度（初始100元）；请在费用页明确确认继续" }
         val charge=Charge(owner=owner,month=month,component=component,model=model.model,reservedMicro=cost,pricingSource=model.pricingSource)

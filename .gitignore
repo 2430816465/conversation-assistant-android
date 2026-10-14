@@ -26,3 +26,6 @@
 **/*.pck
 **/*.db
 **/*.sqlite*
+
+# Local build artifacts and delivery archives
+deliverables/

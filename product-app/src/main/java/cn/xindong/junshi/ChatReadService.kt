@@ -137,7 +137,7 @@ class ChatReadService: AccessibilityService() {
     fun show() {
         if(ball!=null) return
         if(ReadBridge.scope==null) { ReadBridge.status="请先解锁并选择观众"; return }
-        val v=view("军师") { menu() }.apply { background=GradientDrawable().apply { setColor(Color.rgb(18,83,79)); cornerRadius=dp(28).toFloat() } }
+        val v=view("军师") { menu() }.apply { background=GradientDrawable().apply { setColor(Color.rgb(184,66,52)); cornerRadius=dp(28).toFloat() } }
         try { getSystemService(WindowManager::class.java).addView(v,params(Gravity.END or Gravity.CENTER_VERTICAL,dp(56),dp(56))); ball=v }
         catch(e: Exception) { ReadBridge.status="无法显示悬浮球：${e.javaClass.simpleName}" }
     }
@@ -148,7 +148,7 @@ class ChatReadService: AccessibilityService() {
         removePanel()
         val box=LinearLayout(this).apply {
             orientation=LinearLayout.VERTICAL; setPadding(dp(8),dp(8),dp(8),dp(12))
-            background=GradientDrawable().apply { setColor(Color.rgb(22,43,47)); cornerRadius=dp(16).toFloat() }
+            background=GradientDrawable().apply { setColor(Color.rgb(48,43,40)); cornerRadius=dp(20).toFloat() }
         }
         box.addView(view("当前档案：${ReadBridge.contactName}\n请本人核对当前微信聊天身份") {})
         box.addView(view(if(ReadBridge.autoRead) "前台自动读取：开启 · 点击暂停" else "前台自动读取：暂停 · 点击开启") {

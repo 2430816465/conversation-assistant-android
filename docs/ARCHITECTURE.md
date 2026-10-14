@@ -1,6 +1,8 @@
 # 产品工程架构
 
-2026-10-13，0.3.0-development。依据原冻结基线和 CR-20261012-01/02、CR-20261013-04；真机暂缓期间允许继续独立研发，不表示 G1 已通过。
+2026-10-15，0.3.7-preview。依据原冻结基线和 CR-20261012-01/02、CR-20261013-04、CR-20261014-05/06、CR-20261015-07；真机暂缓期间允许继续独立研发，不表示 G1 已通过。
+
+当前AI分析默认分别调用狗头军师Skill、恋爱大师Skill，再调用生成模型融合；Jev默认关闭，可后续配置开启。已启用组件失败则拒绝采用，不静默省略。旧版未配置Jev的默认开启状态仅迁移一次，同时撤销旧云端同意；已配置Jev及新版显式选择保留。双Skill和未来Jev＋双Skill使用独立的质量实验架构标识，不能混批计算通过率。
 
 ## 工程边界
 
@@ -51,3 +53,9 @@ Scope = Account ID / Streamer ID / Contact ID，三者为稳定随机 ID；昵�
 `scripts/Build-Product.ps1` 运行核心测试、桌面工具编译、Android lint 和 APK 构建。仪器测试必须明确选择模拟器；真实手机与微信验证独立记录。锁文件固定解析依赖；源包排除密钥、真实聊天、原始手机证据、构建缓存和上游整仓库。
 
 相关实现：product-app 的 Vault.kt、ProductController.kt、ChatReadService.kt、MainActivity.kt、MediaReview.kt；product-core 的 History.kt、SealedBox.kt、Analysis.kt、StyleAndContext.kt、HttpGateway.kt、AiModels.kt。
+
+## 原生界面层
+
+ProductScreen管理Scaffold、底部导航、范围切换和稳定LazyColumn项目key；延迟回调前快照工作区状态，防止状态条变动或锁定触发重复SaveableStateProvider。AccountScreens处理本机登录/注册/改密；AdvisorScreen组织最新消息核对、真实候选及底部编辑；WorkspaceScreens负责导入/历史/档案；SettingsScreens处理模型/费用/报告。JunshiTheme与UiComponents统一实际颜色、字号、矢量图标和可访问控件，不引入WebView或远程图片。
+
+界面草稿按账户/主播/观众隔离，普通字段跨导航与旋转保留；模型与接口草稿留controller当前进程，不把Key或密码写入系统恢复Bundle。退出/切换范围清理敏感草稿。最新消息填入后才展示必须核对项，未确认仍不能提交；剪贴板只在用户点击时读取。VisualUiTest的合成候选仅在测试APK中创建，不是产品假AI路径。

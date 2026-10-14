@@ -83,7 +83,14 @@ class CoreTest {
     }
     @Test fun citedSourceIsRecalledAheadOfRecentMessages() { val c=conversation(1000); val recall=Contexts.recall(c,setOf("m35"),"unrelated",600); assertTrue(recall.any { it.getString("id")=="m35" }) }
     @Test fun candidatesAreDynamicAndGrouped() { val analysis=AnalysisFormat.parse(validReport(),setOf("m1")); assertEquals(1,analysis.candidates.size); assertEquals(1,analysis.candidates.single().segments.size) }
-    @Test fun nonexistentAiCitationRejected() { rejects { AnalysisFormat.parse(validReport("foreign"),setOf("m1")) } }
+    @Test fun nonexistentAiCitationRejected() {
+        rejects { AnalysisFormat.parse(validReport("foreign"),setOf("m1")) }
+        val missing=JSONObject(validReport())
+        missing.getJSONObject("analysis").getJSONArray("facts").getJSONObject(0).put("evidence_ids",arr(emptyList<String>()))
+        val failure=runCatching { AnalysisFormat.parse(missing.toString(),setOf("m1")) }.exceptionOrNull()
+        assertTrue(failure is IllegalArgumentException)
+        assertEquals("AI事实缺少正文或原文引用，结果已拒绝采用",failure?.message)
+    }
     @Test fun explicitRefusalRequiresNoReply() { rejects { AnalysisFormat.parse(validReport(),setOf("m1"),true) }; assertTrue(AnalysisFormat.parse(validReport(noReply=true),setOf("m1"),true).noReply) }
     @Test fun cancelledOldScopeCannotAcceptLateResult() { val s=ScopeSession(); s.select(scope); val ticket=s.ticket(scope); s.select(scope.copy(contactId="different")); assertFalse(s.accepts(scope,ticket.first)); rejects { ticket.second.check() } }
     @Test fun sameScopeNewEpochAlsoDropsOldResult() { val s=ScopeSession(); s.select(scope); val ticket=s.ticket(scope); s.invalidate(); assertFalse(s.accepts(scope,ticket.first)) }
@@ -106,6 +113,18 @@ class CoreTest {
     }
     @Test fun failedPersistenceCannotStartUnrecordedCall() { val ledger=Ledger(persist={ _,_-> error("disk full fixture") }); rejects { ledger.reserve("a","test",config(),10) }; assertTrue(ledger.entries().isEmpty()) }
     @Test fun duplicateSettlementRejected() { val l=Ledger(); val c=config(); val id=l.reserve("a","test",c,10); l.settle(id,Usage(1,1),c); rejects { l.settle(id,Usage(0,0),c) } }
+    @Test fun finiteConcurrentReservationsStayCountedAndUnknownUsageStopsAllNewCalls() {
+        val l=Ledger(maxInFlight=2); val c=config()
+        val a=l.reserve("qa","first",c,10); val b=l.reserve("qa","second",c,10)
+        rejects { l.reserve("qa","third",c,10) }
+        val before=l.spent(Costing.month(System.currentTimeMillis())); assertTrue(before>0)
+        l.settle(a,null,c)
+        rejects { l.reserve("qa","third",c,10) }
+        l.settle(b,Usage(1,1),c); rejects { l.reserve("qa","third",c,10) }
+        l.reconcile(a,3); assertTrue(l.reserve("qa","third",c,10).isNotBlank())
+        val restored=Ledger(listOf(Charge(owner="qa",month=Costing.month(System.currentTimeMillis()),component="crash",model="fixture",reservedMicro=1)),maxInFlight=2)
+        assertEquals("UNCERTAIN",restored.entries().single().state); rejects { restored.reserve("qa","new",c,10) }
+    }
     @Test fun plainChatRejectsLengthTruncation() { val o=JSONObject("""{"model":"fixture","choices":[{"finish_reason":"length","message":{"content":"partial"}}]}"""); rejects { HttpGateway.parseChat(o) } }
     @Test fun sseCollectsUsageAndRequiresDone() {
         val raw="data: {\"model\":\"fixture\",\"choices\":[{\"delta\":{\"content\":\"hello\"},\"finish_reason\":null}]}\n\ndata: {\"model\":\"fixture\",\"choices\":[{\"delta\":{},\"finish_reason\":\"stop\"}]}\n\ndata: {\"model\":\"fixture\",\"choices\":[],\"usage\":{\"prompt_tokens\":10,\"completion_tokens\":2}}\n\ndata: [DONE]\n\n"

@@ -1,5 +1,5 @@
 param([Parameter(Mandatory=$true)][ValidatePattern('^emulator-[0-9]+$')][string]$Serial,
-      [string]$JavaHome,[string]$SdkRoot)
+      [string]$JavaHome,[string]$SdkRoot,[string]$TestClass)
 $ErrorActionPreference='Stop'
 $projectRoot=Split-Path -Parent $PSScriptRoot
 if (-not $SdkRoot) { $SdkRoot=Join-Path $env:LOCALAPPDATA 'Android\Sdk' }
@@ -24,7 +24,10 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Selected emulator product install failed.' }
     & $adb -s $Serial install -r (Join-Path $buildRoot 'outputs\apk\androidTest\debug\product-app-debug-androidTest.apk')
     if ($LASTEXITCODE -ne 0) { throw 'Selected emulator test install failed.' }
-    $output=& $adb -s $Serial shell am instrument -w -r 'cn.xindong.junshi.test/androidx.test.runner.AndroidJUnitRunner' 2>&1
+    $instrumentArgs=@('shell','am','instrument','-w','-r')
+    if ($TestClass) { $instrumentArgs+=@('-e','class',$TestClass) }
+    $instrumentArgs+='cn.xindong.junshi.test/androidx.test.runner.AndroidJUnitRunner'
+    $output=& $adb -s $Serial @instrumentArgs 2>&1
     $exitCode=$LASTEXITCODE
     [IO.File]::WriteAllLines((Join-Path $projectRoot 'reports\product\emulator-instrumentation.txt'),[string[]]$output,[Text.UTF8Encoding]::new($false))
     $result=$output | Out-String

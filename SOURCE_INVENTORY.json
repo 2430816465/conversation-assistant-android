@@ -1,7 +1,14 @@
 {
-  "snapshot_date": "2026-10-14",
-  "scope": "Published source snapshot; Git may normalize text line endings",
+  "snapshot_date": "2026-10-15",
+  "captured_at": "2026-10-15T01:51:25+08:00",
+  "scope": "Selected current working source. bytes/sha256 describe published Git blobs; original_copy_sha256 describes source input bytes before Git text normalization. Private data and non-distributable resources excluded.",
   "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 306,
+      "sha256": "76cf11bd262a54a994b0991806e5b684ddf233d10c9b7ed403a8f6d531586f20",
+      "original_copy_sha256": "76cf11bd262a54a994b0991806e5b684ddf233d10c9b7ed403a8f6d531586f20"
+    },
     {
       "path": "app/build.gradle.kts",
       "bytes": 1159,
@@ -93,6 +100,336 @@
       "original_copy_sha256": "cb029b35db0e976c087100424e16e14a6256b46962398887520e51508c3b5842"
     },
     {
+      "path": "build.gradle.kts",
+      "bytes": 2579,
+      "sha256": "82a688408fa582b8a26963b6bc9bbf2fa1c1ad7ff1072abbf4d893ab682bf0c0",
+      "original_copy_sha256": "82a688408fa582b8a26963b6bc9bbf2fa1c1ad7ff1072abbf4d893ab682bf0c0"
+    },
+    {
+      "path": "CODEX_MASTER_PROMPT.md",
+      "bytes": 18618,
+      "sha256": "2034bc47ffac16b126ed4d6dd5e1082d387751a061a41d890759125a7f4be070",
+      "original_copy_sha256": "2034bc47ffac16b126ed4d6dd5e1082d387751a061a41d890759125a7f4be070"
+    },
+    {
+      "path": "docs/AI_PIPELINE.md",
+      "bytes": 10940,
+      "sha256": "49ba2d50a8ffacb66a07aeb138274f19c65a2d0cd16f396bbdd8f715d86c45a9",
+      "original_copy_sha256": "49ba2d50a8ffacb66a07aeb138274f19c65a2d0cd16f396bbdd8f715d86c45a9"
+    },
+    {
+      "path": "docs/AI_QUALITY_TEST_REPORT.md",
+      "bytes": 10526,
+      "sha256": "8a68da9889d9f18127c4e6a2cb0b180cfb11c18dd4f2b7c8ca709ba91fba8999",
+      "original_copy_sha256": "9ab2b7fa59461a2c9190b6636354aa4057a35d38b7cf7eb049e02ea360813cbc"
+    },
+    {
+      "path": "docs/APP_INTEGRATION_TEST_20261014.md",
+      "bytes": 8190,
+      "sha256": "e07f791b40c07d8baa5264ee257aa06b30971a27f3257c9e7c63081b3064043d",
+      "original_copy_sha256": "e07f791b40c07d8baa5264ee257aa06b30971a27f3257c9e7c63081b3064043d"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 8367,
+      "sha256": "080e07a1a1dfe72e92e24ecf9b34043f259cc2b06df63a63ce54e421abfa2e36",
+      "original_copy_sha256": "7623aee6358243322bb202771947f284054fc621ea3bf3cae37a8a00e642a19f"
+    },
+    {
+      "path": "docs/CHANGE_REQUEST_20261012.md",
+      "bytes": 10103,
+      "sha256": "3583f10f2dcf46761c2133cfb0ea3bbf90ade32b406cf46098eebfbf5c5774c3",
+      "original_copy_sha256": "5c9bca6b10a493b60ab379e27fee29e874c7e59d6bf1f53488a60ed20afa5ecd"
+    },
+    {
+      "path": "docs/CHANGE_REQUEST_20261014_UI.md",
+      "bytes": 1677,
+      "sha256": "32b44e262539b9760a5aae1566831f0e52ab187fd32485b3939cb809ea736a5f",
+      "original_copy_sha256": "32b44e262539b9760a5aae1566831f0e52ab187fd32485b3939cb809ea736a5f"
+    },
+    {
+      "path": "docs/CHANGE_REQUEST_20261015_UI.md",
+      "bytes": 1374,
+      "sha256": "9027a03a49db5cea122f54261770ee654183be97e1fefdac608e3c98d59c6457",
+      "original_copy_sha256": "9027a03a49db5cea122f54261770ee654183be97e1fefdac608e3c98d59c6457"
+    },
+    {
+      "path": "docs/CONFIG_AND_DIALOGUE_CHECK_20261013.md",
+      "bytes": 6714,
+      "sha256": "17aa22d11dd48f83eae1d310919bd81739ea223ed3749f5426b0b6b91e395f17",
+      "original_copy_sha256": "735f344d873852477a67d558a20b5226e5c1378abe19ef6bf292d0304d832ecc"
+    },
+    {
+      "path": "docs/DELIVERY_0.2.0.md",
+      "bytes": 3226,
+      "sha256": "ed4342338140af19db78a7f04b32fbb3ed041234eadcc019e020db5673d0995b",
+      "original_copy_sha256": "6b7e80c13f947dd2dfb2f53f18aa9055a6c118732aa0c733b8d44945054fe482"
+    },
+    {
+      "path": "docs/DELIVERY_0.3.0.md",
+      "bytes": 4397,
+      "sha256": "91ef5a6363398c9470da52d6cf22c414e16b528b7fabf170664e2a4f666526cc",
+      "original_copy_sha256": "91ef5a6363398c9470da52d6cf22c414e16b528b7fabf170664e2a4f666526cc"
+    },
+    {
+      "path": "docs/DELIVERY_0.3.1.md",
+      "bytes": 3011,
+      "sha256": "b32fc5b63761906c653a4f78bfb132aba455f3982b8635cd3f8f3e4017d1c8fd",
+      "original_copy_sha256": "b32fc5b63761906c653a4f78bfb132aba455f3982b8635cd3f8f3e4017d1c8fd"
+    },
+    {
+      "path": "docs/DELIVERY_0.3.2.md",
+      "bytes": 5348,
+      "sha256": "fa630ee4a19082938c9b3926b01b26c2217d3defe6b5a676f54ffde235559d0f",
+      "original_copy_sha256": "fa630ee4a19082938c9b3926b01b26c2217d3defe6b5a676f54ffde235559d0f"
+    },
+    {
+      "path": "docs/DELIVERY_0.3.3.md",
+      "bytes": 1489,
+      "sha256": "457cddee5e322957f09eeeab7459a62f71670c030a1fc0719bf0176d4d504eaa",
+      "original_copy_sha256": "457cddee5e322957f09eeeab7459a62f71670c030a1fc0719bf0176d4d504eaa"
+    },
+    {
+      "path": "docs/DELIVERY_0.3.4.md",
+      "bytes": 2333,
+      "sha256": "373afdff9e4f065d0e67680444b5a0eef476fe906270e65453e8a8f04036bb55",
+      "original_copy_sha256": "373afdff9e4f065d0e67680444b5a0eef476fe906270e65453e8a8f04036bb55"
+    },
+    {
+      "path": "docs/DELIVERY_0.3.5.md",
+      "bytes": 3299,
+      "sha256": "41c8203ba064f17dded23627a15d4635c82e7744b236d005084efdb0638ca8dc",
+      "original_copy_sha256": "41c8203ba064f17dded23627a15d4635c82e7744b236d005084efdb0638ca8dc"
+    },
+    {
+      "path": "docs/DELIVERY_0.3.6.md",
+      "bytes": 4917,
+      "sha256": "bb264526c10e79050f7d62fd6320801c910f8de1d26c4c5e1ba55a7fdbe9d01c",
+      "original_copy_sha256": "0d53229ad1922879b0572d2d5bf11037be9723bf17dc67a164633aac6a7aae42"
+    },
+    {
+      "path": "docs/DELIVERY_0.3.7.md",
+      "bytes": 3433,
+      "sha256": "346dcc65f28ff7878924a9149eff62e9a7a50ded52f30835a481568fcc8feccd",
+      "original_copy_sha256": "346dcc65f28ff7878924a9149eff62e9a7a50ded52f30835a481568fcc8feccd"
+    },
+    {
+      "path": "docs/DUAL_SKILL_TEST_20261014.md",
+      "bytes": 7225,
+      "sha256": "4cb5f3ce7a415861cf15ff8c985d03cf699bceaa8f4706e0d1b8165d3e0a28da",
+      "original_copy_sha256": "4cb5f3ce7a415861cf15ff8c985d03cf699bceaa8f4706e0d1b8165d3e0a28da"
+    },
+    {
+      "path": "docs/ENVIRONMENT_REPORT.md",
+      "bytes": 10711,
+      "sha256": "ae73c5e654deb66de2294f809b518261e0f5da330bfb7dd93acb103bf18e685c",
+      "original_copy_sha256": "fadb902f46f2e46c3a13f6ab7e3e2a5a016edbdce3f5b9c1b29df391af8c6860"
+    },
+    {
+      "path": "docs/FOREGROUND_MESSAGE_ACCEPTANCE.md",
+      "bytes": 5149,
+      "sha256": "88e5845bb20f623206cb371aa37014158926ac2f872722753597b0623e2d5867",
+      "original_copy_sha256": "a6621abf9e1f09c6c3c80a3386ddfdb79c0eb074a6fe93e1de58f846f406e9c8"
+    },
+    {
+      "path": "docs/G0_DEVICE_BASELINE.md",
+      "bytes": 2478,
+      "sha256": "38d2294c3b8fd4915cd6ec43b90547d1171269b104dac452e92fd2bf0147aa3a",
+      "original_copy_sha256": "38d2294c3b8fd4915cd6ec43b90547d1171269b104dac452e92fd2bf0147aa3a"
+    },
+    {
+      "path": "docs/G1_ARCHITECTURE.md",
+      "bytes": 5561,
+      "sha256": "990b4339193f7e7441c6e709808907656e366c888f2a90ea4881aceac351b287",
+      "original_copy_sha256": "990b4339193f7e7441c6e709808907656e366c888f2a90ea4881aceac351b287"
+    },
+    {
+      "path": "docs/G1_P0_REPORT.md",
+      "bytes": 6329,
+      "sha256": "e1ea73bcb9258c529cb1842e8238b4d5418e9b6983c62aaecd0d3c077822978c",
+      "original_copy_sha256": "608f1f892081967827ebf9a6cdc9ef251cf5eeefea7257193a92444bdfbb7ffc"
+    },
+    {
+      "path": "docs/G1_REAL_DEVICE_REPORT.md",
+      "bytes": 20574,
+      "sha256": "648eace527f8d9ad9df83f0f12130ad8b4d61508c8b9dca478b346487fad94f9",
+      "original_copy_sha256": "648eace527f8d9ad9df83f0f12130ad8b4d61508c8b9dca478b346487fad94f9"
+    },
+    {
+      "path": "docs/G1_TEST_MATRIX.md",
+      "bytes": 5981,
+      "sha256": "89f679776c9568a17271ce5cd26c028248f2310baec2e693721b8f39114c0237",
+      "original_copy_sha256": "89f679776c9568a17271ce5cd26c028248f2310baec2e693721b8f39114c0237"
+    },
+    {
+      "path": "docs/INSTALL_AND_REAL_DEVICE_TEST.md",
+      "bytes": 15280,
+      "sha256": "a3a112bba614d48e69153e1a467b4b9da5eb8d5488ea8c6bcef8f57621008d71",
+      "original_copy_sha256": "a3a112bba614d48e69153e1a467b4b9da5eb8d5488ea8c6bcef8f57621008d71"
+    },
+    {
+      "path": "docs/JEV_COST_ESTIMATE_20261014.md",
+      "bytes": 2575,
+      "sha256": "12d8404fbe2b60fe91f9fdfadb2f1950432d0c4b43badd35c573468434119aa4",
+      "original_copy_sha256": "12d8404fbe2b60fe91f9fdfadb2f1950432d0c4b43badd35c573468434119aa4"
+    },
+    {
+      "path": "docs/KNOWN_ISSUES.md",
+      "bytes": 7434,
+      "sha256": "a61df18235c9cf84ef28a80dadeb50899ccad722ccdce092065142b4525ee002",
+      "original_copy_sha256": "55c74672d5ca5bc1016644fe94e366a6dc1a84cf712b00ea9f9ce18aaf6a7f94"
+    },
+    {
+      "path": "docs/PRD_V1.0.md",
+      "bytes": 13626,
+      "sha256": "cfe5b345322db00812a1c05524c1eecf3208009609142acab25aacd27f2743f0",
+      "original_copy_sha256": "cfe5b345322db00812a1c05524c1eecf3208009609142acab25aacd27f2743f0"
+    },
+    {
+      "path": "docs/PRODUCT_INSTALL.md",
+      "bytes": 3788,
+      "sha256": "48b8db2fbaaf9b3a69727508144d3c3f9061c1deb6f92a08e8111d204dcf87f3",
+      "original_copy_sha256": "3019911f27bde0d51688af074da42d0f2890008f453d6ab4688c92bd8579dfff"
+    },
+    {
+      "path": "docs/PRODUCT_REAL_DEVICE_REPORT_20261013.md",
+      "bytes": 14191,
+      "sha256": "b8b40f55715ecf7ff4d780065cde823cda712d6cc33e921f3dff04b804788c41",
+      "original_copy_sha256": "b8b40f55715ecf7ff4d780065cde823cda712d6cc33e921f3dff04b804788c41"
+    },
+    {
+      "path": "docs/QUALITY_BATCH_PROTOCOL_20261014.md",
+      "bytes": 4077,
+      "sha256": "debdf7619ed70336e567ab120385ee98915324b38095fff0a43155cd5751fbeb",
+      "original_copy_sha256": "debdf7619ed70336e567ab120385ee98915324b38095fff0a43155cd5751fbeb"
+    },
+    {
+      "path": "docs/REQUIREMENTS_LOCKED.md",
+      "bytes": 8023,
+      "sha256": "857532073062edbb23b202803434f92e5198f8003000732b4ce29a9694ca6afb",
+      "original_copy_sha256": "1dde012df8b03dcd5b560095213164957c511697869380efb7d8b6f9ce14abfa"
+    },
+    {
+      "path": "docs/REQUIREMENTS_STATUS.md",
+      "bytes": 5182,
+      "sha256": "5c79b1d088362b660460ba7a73da679413c896acefc9a844e67e542514b4495b",
+      "original_copy_sha256": "939e66fdb07c3c33b4812bf78267a8e439f0c5a95de7cd687c108d6c52c0068e"
+    },
+    {
+      "path": "docs/RISKS_AND_CONFLICTS.md",
+      "bytes": 4494,
+      "sha256": "11125f91a0b139f5b6fd30d008deb434c092e856f3eec9d3df25e2444c6daa43",
+      "original_copy_sha256": "11125f91a0b139f5b6fd30d008deb434c092e856f3eec9d3df25e2444c6daa43"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "bytes": 3185,
+      "sha256": "6d3ccca02c8383186b07f0c2fc2581216dafa39bc4ae3e56f000c90fa506d9d6",
+      "original_copy_sha256": "2622b5fdd19f8d67e9acf3ee11428cae688f939600f5337ee26519dbe1b508e5"
+    },
+    {
+      "path": "docs/TEST_MATRIX.md",
+      "bytes": 3261,
+      "sha256": "3abaae1e0850a32cb360c52aedef3ed1479966ce972419c90719a6157058d70e",
+      "original_copy_sha256": "22e3ffec079e7915c4b2fdb9e3189646e582513c34274d1e89a41038b018d2fc"
+    },
+    {
+      "path": "docs/TEST_REPORT.md",
+      "bytes": 22274,
+      "sha256": "d2b4fe669ada58809dc96bb95dc7029712d7928fed068db64fe2dcdb370d4495",
+      "original_copy_sha256": "e8ef16ed76bad44997ca33289ce8c54fefd629b437796616482b19013beb0c4d"
+    },
+    {
+      "path": "docs/THIRD_PARTY.md",
+      "bytes": 3419,
+      "sha256": "390be77df61aee98af61fb5085be6fb0e1df7b26b35f95d68a805dc10a5eabed",
+      "original_copy_sha256": "390be77df61aee98af61fb5085be6fb0e1df7b26b35f95d68a805dc10a5eabed"
+    },
+    {
+      "path": "docs/UI_DESIGN_SYSTEM.md",
+      "bytes": 3415,
+      "sha256": "f1c88ce6e434d196e02b910d0bbb68b258135e60f804b3c3c9d6fe3b4d8a2d23",
+      "original_copy_sha256": "f1c88ce6e434d196e02b910d0bbb68b258135e60f804b3c3c9d6fe3b4d8a2d23"
+    },
+    {
+      "path": "docs/UI_TEST_REPORT_20261014.md",
+      "bytes": 7513,
+      "sha256": "c90d7c7c1498bc6d2329dc12f4398c119f1a1cee4ebf0b43ffa691815bd13d8a",
+      "original_copy_sha256": "3309e63e5b57c9da1ee8f0fd9eb3776a11fa7bee8ccdfe4c74cf19e239e99f18"
+    },
+    {
+      "path": "docs/UI_TEST_REPORT_20261015.md",
+      "bytes": 6747,
+      "sha256": "61fc49fa17347e9e7a77cd2e38048119a87f4c9956b6fa546ee13e38c25faede",
+      "original_copy_sha256": "61fc49fa17347e9e7a77cd2e38048119a87f4c9956b6fa546ee13e38c25faede"
+    },
+    {
+      "path": "docs/UPSTREAM_RESEARCH.md",
+      "bytes": 6664,
+      "sha256": "f55610b3fab65f419fbac52dc7563665356cdc015d99ada2d260e2b9bf591326",
+      "original_copy_sha256": "f55610b3fab65f419fbac52dc7563665356cdc015d99ada2d260e2b9bf591326"
+    },
+    {
+      "path": "docs/USER_GUIDE_0.3.6.md",
+      "bytes": 7626,
+      "sha256": "f4770726e7b914f3e590d7283e9c3d5e7d7e1ba9f7fabf2633f5d0fd03cb0903",
+      "original_copy_sha256": "f4770726e7b914f3e590d7283e9c3d5e7d7e1ba9f7fabf2633f5d0fd03cb0903"
+    },
+    {
+      "path": "docs/USER_GUIDE_0.3.7.md",
+      "bytes": 7764,
+      "sha256": "d4de23b32fdfa373c486fd6dd237ed444302262f0313886fee140aafba5449cb",
+      "original_copy_sha256": "4e100b8c44e330dbb640e096badf22a226cd7cc9e7c71e86fc07df1c66d6ee0d"
+    },
+    {
+      "path": "docs/WECHAT_DATA_ACCESS_ASSESSMENT_20261013.md",
+      "bytes": 4907,
+      "sha256": "4f6e8c1d301e6fb2ef7535ef2c8957e8fd07763156813dbcceeeaa7900483d6c",
+      "original_copy_sha256": "4f6e8c1d301e6fb2ef7535ef2c8957e8fd07763156813dbcceeeaa7900483d6c"
+    },
+    {
+      "path": "evidence/templates/ground_truth.csv",
+      "bytes": 139,
+      "sha256": "bc54ebc05b1ddc24059d9bc6941808818e7a26fc31493319e475e2a719f0da1c",
+      "original_copy_sha256": "bc54ebc05b1ddc24059d9bc6941808818e7a26fc31493319e475e2a719f0da1c"
+    },
+    {
+      "path": "evidence/templates/scenario_manifest.csv",
+      "bytes": 201,
+      "sha256": "a1dd96d647457dfc05aad191a85e3aaa465c7737faabdd72eea3e16c10d2bf0f",
+      "original_copy_sha256": "a1dd96d647457dfc05aad191a85e3aaa465c7737faabdd72eea3e16c10d2bf0f"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.jar",
+      "bytes": 43705,
+      "sha256": "81a82aaea5abcc8ff68b3dfcb58b3c3c429378efd98e7433460610fecd7ae45f",
+      "original_copy_sha256": "81a82aaea5abcc8ff68b3dfcb58b3c3c429378efd98e7433460610fecd7ae45f"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.properties",
+      "bytes": 338,
+      "sha256": "3b6b8df392b92f86332d907707f3d952a32c8d6e1fedabafe2b5ec3d933a78c4",
+      "original_copy_sha256": "3b6b8df392b92f86332d907707f3d952a32c8d6e1fedabafe2b5ec3d933a78c4"
+    },
+    {
+      "path": "gradle.properties",
+      "bytes": 280,
+      "sha256": "4a6f5a006813e7b630e4612aea3de71a1facbbde58ec07479f690d032f99e520",
+      "original_copy_sha256": "4a6f5a006813e7b630e4612aea3de71a1facbbde58ec07479f690d032f99e520"
+    },
+    {
+      "path": "gradlew",
+      "bytes": 8752,
+      "sha256": "734b3879d3501dce471cf0522d3bcbafe76873d9fc5129345b67fb43bd15e933",
+      "original_copy_sha256": "734b3879d3501dce471cf0522d3bcbafe76873d9fc5129345b67fb43bd15e933"
+    },
+    {
+      "path": "gradlew.bat",
+      "bytes": 2872,
+      "sha256": "2209f919a22528af59a2af2ad97e8d056cca18e39f7d87aa3fd549a73b180150",
+      "original_copy_sha256": "57931b17dd228e5c24dac90e815d0bf82477e831a4618dfab4136f5446b42a9f"
+    },
+    {
       "path": "probe-core/build.gradle.kts",
       "bytes": 112,
       "sha256": "9b76d20392ffb23bce7e3a72eae25da1c6bd2a5bad8dcffccf36b2e86d68d7a3",
@@ -142,9 +479,9 @@
     },
     {
       "path": "product-app/build.gradle.kts",
-      "bytes": 1662,
-      "sha256": "5eb19ed44103bf1f098b55f775d67d671c8e36b0786ba4315acc96b7cecf98aa",
-      "original_copy_sha256": "5eb19ed44103bf1f098b55f775d67d671c8e36b0786ba4315acc96b7cecf98aa"
+      "bytes": 1678,
+      "sha256": "bb34da8c1a27d34373da867775630bdd56ae92f1d83c5e392bc84d8241c18e83",
+      "original_copy_sha256": "bb34da8c1a27d34373da867775630bdd56ae92f1d83c5e392bc84d8241c18e83"
     },
     {
       "path": "product-app/gradle.lockfile",
@@ -160,15 +497,21 @@
     },
     {
       "path": "product-app/src/androidTest/java/cn/xindong/junshi/ProductUiTest.kt",
-      "bytes": 6630,
-      "sha256": "d1473f4f9495e6c9204d8335bdbce7f8a23e799e2cb579d4a2920004474a4bae",
-      "original_copy_sha256": "d1473f4f9495e6c9204d8335bdbce7f8a23e799e2cb579d4a2920004474a4bae"
+      "bytes": 16061,
+      "sha256": "828afc7b57884471cd326a2d29e12f2cc806091f868e9f12807b6c769a3a9dd2",
+      "original_copy_sha256": "228cd44a098bef49882ec98e252e8fe42f6a7f1556142d2077df3ff480b89d22"
     },
     {
       "path": "product-app/src/androidTest/java/cn/xindong/junshi/VaultDeviceTest.kt",
-      "bytes": 3610,
-      "sha256": "6b1dfe2e8959455d46ddecc4b10307daa76f1083a606c7cb6e3a74a0abf7fa6b",
-      "original_copy_sha256": "6b1dfe2e8959455d46ddecc4b10307daa76f1083a606c7cb6e3a74a0abf7fa6b"
+      "bytes": 5225,
+      "sha256": "2a14e8607a50a0326e7edfcc8941250d873dc40cdc8a9d91fb4c4c13014b7d59",
+      "original_copy_sha256": "2a14e8607a50a0326e7edfcc8941250d873dc40cdc8a9d91fb4c4c13014b7d59"
+    },
+    {
+      "path": "product-app/src/androidTest/java/cn/xindong/junshi/VisualUiTest.kt",
+      "bytes": 7975,
+      "sha256": "a0399583ea65b79c2a881e890811a5172918d4bd5863ad1140147a0ca381eb26",
+      "original_copy_sha256": "123d6a33f48e71a0cbef2aea0f701dc4d45a3acca44b59d794d69d988ab42575"
     },
     {
       "path": "product-app/src/main/AndroidManifest.xml",
@@ -177,16 +520,34 @@
       "original_copy_sha256": "90b5ef6eaf955d428dff9f06529ce5429a3f82356b84120d05651f8b7137a3d0"
     },
     {
+      "path": "product-app/src/main/java/cn/xindong/junshi/AccountScreens.kt",
+      "bytes": 8591,
+      "sha256": "7d8b28075870039ae3ff76defcd7d1b6495004382fedc6c69291e73c7264bb42",
+      "original_copy_sha256": "7d8b28075870039ae3ff76defcd7d1b6495004382fedc6c69291e73c7264bb42"
+    },
+    {
+      "path": "product-app/src/main/java/cn/xindong/junshi/AdvisorScreen.kt",
+      "bytes": 16055,
+      "sha256": "3f8765c0bb217ebb8c03610cde651573ca51853faefffa0288fbb2d1f2efc5fc",
+      "original_copy_sha256": "3f8765c0bb217ebb8c03610cde651573ca51853faefffa0288fbb2d1f2efc5fc"
+    },
+    {
       "path": "product-app/src/main/java/cn/xindong/junshi/ChatReadService.kt",
-      "bytes": 19372,
-      "sha256": "796842008512812525073d3b02a6d3ff61b51e1e3abdd593d64273b2f123a24a",
-      "original_copy_sha256": "796842008512812525073d3b02a6d3ff61b51e1e3abdd593d64273b2f123a24a"
+      "bytes": 19373,
+      "sha256": "db45c58059a6f85c1deff822e2e4381a65b04e77c571fd5419231f2a9b260ee3",
+      "original_copy_sha256": "db45c58059a6f85c1deff822e2e4381a65b04e77c571fd5419231f2a9b260ee3"
+    },
+    {
+      "path": "product-app/src/main/java/cn/xindong/junshi/JunshiTheme.kt",
+      "bytes": 4516,
+      "sha256": "ae2f5295db31116000b1387968b4890c484c7cd707ba4e65ac940ba9ceb7c4a8",
+      "original_copy_sha256": "ae2f5295db31116000b1387968b4890c484c7cd707ba4e65ac940ba9ceb7c4a8"
     },
     {
       "path": "product-app/src/main/java/cn/xindong/junshi/MainActivity.kt",
-      "bytes": 50179,
-      "sha256": "28c40c74cb2f93e632c64fa5b9aac2744fd6e66cb943c8d5bd35924d6acfd862",
-      "original_copy_sha256": "28c40c74cb2f93e632c64fa5b9aac2744fd6e66cb943c8d5bd35924d6acfd862"
+      "bytes": 1583,
+      "sha256": "740570e17a16e042b2bd0f7f2b25b57fb158b5b4e7a916b22c59d973c498621c",
+      "original_copy_sha256": "34cacc630cf61fa60bfb53590907491789d3bfd9f3e19059b44ec8b46bcd3aea"
     },
     {
       "path": "product-app/src/main/java/cn/xindong/junshi/MediaReview.kt",
@@ -195,10 +556,22 @@
       "original_copy_sha256": "02904a71e0dd2e46ce51e869774816d4f2abb0ca8cdbc41c07098dd129444155"
     },
     {
+      "path": "product-app/src/main/java/cn/xindong/junshi/MessageFields.kt",
+      "bytes": 1722,
+      "sha256": "5907a1c0390595b997a8e18c123c648390b588f8d6861e37bdce278a05cf4523",
+      "original_copy_sha256": "5907a1c0390595b997a8e18c123c648390b588f8d6861e37bdce278a05cf4523"
+    },
+    {
       "path": "product-app/src/main/java/cn/xindong/junshi/ProductController.kt",
-      "bytes": 19847,
-      "sha256": "2b278bdd4ff5d051536965109d467048e63f9600a05139f8ee7e8b948257c6af",
-      "original_copy_sha256": "2b278bdd4ff5d051536965109d467048e63f9600a05139f8ee7e8b948257c6af"
+      "bytes": 21958,
+      "sha256": "aec7de201c2d773cb36a14302ea4fd1c10f7d0bcd2271217545a46e1586ceae9",
+      "original_copy_sha256": "aec7de201c2d773cb36a14302ea4fd1c10f7d0bcd2271217545a46e1586ceae9"
+    },
+    {
+      "path": "product-app/src/main/java/cn/xindong/junshi/ProductScreen.kt",
+      "bytes": 23317,
+      "sha256": "184d0bed1d468f9f646d0e6a6f9579e942e2aff388996d361fd2daf97c5b39d9",
+      "original_copy_sha256": "184d0bed1d468f9f646d0e6a6f9579e942e2aff388996d361fd2daf97c5b39d9"
     },
     {
       "path": "product-app/src/main/java/cn/xindong/junshi/ReadHandoffGuard.kt",
@@ -207,16 +580,34 @@
       "original_copy_sha256": "af400c3a98be3734a49df4b0135ba9e26ed23c327c222856bcb372fbbbaa23f4"
     },
     {
+      "path": "product-app/src/main/java/cn/xindong/junshi/SettingsScreens.kt",
+      "bytes": 17341,
+      "sha256": "e664cacfd558065d483a0e9009c4de8af777b0444a67638a6b390279c0111d30",
+      "original_copy_sha256": "e664cacfd558065d483a0e9009c4de8af777b0444a67638a6b390279c0111d30"
+    },
+    {
+      "path": "product-app/src/main/java/cn/xindong/junshi/UiComponents.kt",
+      "bytes": 12438,
+      "sha256": "2dd9cf9ea506645175cd2acb734f2093f7480ef40c97f0a450cbaf3aee5406c9",
+      "original_copy_sha256": "2dd9cf9ea506645175cd2acb734f2093f7480ef40c97f0a450cbaf3aee5406c9"
+    },
+    {
       "path": "product-app/src/main/java/cn/xindong/junshi/Vault.kt",
-      "bytes": 12618,
-      "sha256": "7aee4968de4287a8aa5dcf33d438f1c19bdf78d2a0af27afbb2609d5ae11f141",
-      "original_copy_sha256": "7aee4968de4287a8aa5dcf33d438f1c19bdf78d2a0af27afbb2609d5ae11f141"
+      "bytes": 13546,
+      "sha256": "cc7ef744b03fc74efc819ccf1b11b799fc1725a96e41d195f0a21f86b65f837f",
+      "original_copy_sha256": "cc7ef744b03fc74efc819ccf1b11b799fc1725a96e41d195f0a21f86b65f837f"
+    },
+    {
+      "path": "product-app/src/main/java/cn/xindong/junshi/WorkspaceScreens.kt",
+      "bytes": 24981,
+      "sha256": "72c866e325a8386173ae3092a45f175f53cf36050dfb5d9e9567851c4fedf9c7",
+      "original_copy_sha256": "a23c82dfed44fb7e2c1d2803ea8153fdcb2ab80b94ac6f2bc5a76e283f46f2a1"
     },
     {
       "path": "product-app/src/main/res/drawable/app_icon.xml",
-      "bytes": 497,
-      "sha256": "80bcefabe8405a58570b67c43d5e2e3dbcd8a543fe4059a9b50887db2e1fecd3",
-      "original_copy_sha256": "80bcefabe8405a58570b67c43d5e2e3dbcd8a543fe4059a9b50887db2e1fecd3"
+      "bytes": 584,
+      "sha256": "31e3d67c2082566f514d5114032bed492131dd225823ccb322d397d3280b20b7",
+      "original_copy_sha256": "31e3d67c2082566f514d5114032bed492131dd225823ccb322d397d3280b20b7"
     },
     {
       "path": "product-app/src/main/res/values/strings.xml",
@@ -227,8 +618,14 @@
     {
       "path": "product-app/src/main/res/values/styles.xml",
       "bytes": 477,
-      "sha256": "a31fa24243b225b0d73b8f20d3d3f77ba962be17d0b741bb84ba636cbe0f0189",
-      "original_copy_sha256": "a31fa24243b225b0d73b8f20d3d3f77ba962be17d0b741bb84ba636cbe0f0189"
+      "sha256": "f1ffcffbe37dbb7bbafab3c2c51b90ef62d766d4e14f33c5e937e3ab3fee6b31",
+      "original_copy_sha256": "f1ffcffbe37dbb7bbafab3c2c51b90ef62d766d4e14f33c5e937e3ab3fee6b31"
+    },
+    {
+      "path": "product-app/src/main/res/values-night/styles.xml",
+      "bytes": 351,
+      "sha256": "ca0add3fc7f522e415d550dff7dff1dc075a3511370269862fd0ae182d8915e7",
+      "original_copy_sha256": "ca0add3fc7f522e415d550dff7dff1dc075a3511370269862fd0ae182d8915e7"
     },
     {
       "path": "product-app/src/main/res/xml/accessibility_service.xml",
@@ -262,15 +659,15 @@
     },
     {
       "path": "product-core/src/main/kotlin/cn/xindong/core/AiModels.kt",
-      "bytes": 11420,
-      "sha256": "3c8e9e7d5f49e4ab848d2b510e35c35e5a2d399997d94ae04562b90c5a790793",
-      "original_copy_sha256": "3c8e9e7d5f49e4ab848d2b510e35c35e5a2d399997d94ae04562b90c5a790793"
+      "bytes": 11595,
+      "sha256": "11fc4e95d3bb06ed6fef802caadd3687cbbecb3d8f5b5a641ba7f1471bf15ed8",
+      "original_copy_sha256": "11fc4e95d3bb06ed6fef802caadd3687cbbecb3d8f5b5a641ba7f1471bf15ed8"
     },
     {
       "path": "product-core/src/main/kotlin/cn/xindong/core/Analysis.kt",
-      "bytes": 21064,
-      "sha256": "4d89f42c38ffe856451de4361d78ff11fd5a8054ecf79ada0509f47225a784e3",
-      "original_copy_sha256": "4d89f42c38ffe856451de4361d78ff11fd5a8054ecf79ada0509f47225a784e3"
+      "bytes": 22774,
+      "sha256": "c216838fb835946b35b6beef6ee04b1db9d4cecbf3186c04a2e65438e7af2d2f",
+      "original_copy_sha256": "c216838fb835946b35b6beef6ee04b1db9d4cecbf3186c04a2e65438e7af2d2f"
     },
     {
       "path": "product-core/src/main/kotlin/cn/xindong/core/History.kt",
@@ -304,9 +701,15 @@
     },
     {
       "path": "product-core/src/main/kotlin/cn/xindong/core/SkillOutput.kt",
-      "bytes": 3458,
-      "sha256": "dbfc9cc881e4b3252ad6ad0c221ea2f165b8fa236e7a593da5082c4fd92d00c2",
-      "original_copy_sha256": "dbfc9cc881e4b3252ad6ad0c221ea2f165b8fa236e7a593da5082c4fd92d00c2"
+      "bytes": 4124,
+      "sha256": "033cd84055369a9a761aecc325c73d4907ff6b249963a47beb4c87afbe428e6f",
+      "original_copy_sha256": "033cd84055369a9a761aecc325c73d4907ff6b249963a47beb4c87afbe428e6f"
+    },
+    {
+      "path": "product-core/src/main/kotlin/cn/xindong/core/StructuredChat.kt",
+      "bytes": 3393,
+      "sha256": "2044aae153ac98bec44961dad635c895e1ec4c396b5527a71ca96e1245ca9e53",
+      "original_copy_sha256": "2044aae153ac98bec44961dad635c895e1ec4c396b5527a71ca96e1245ca9e53"
     },
     {
       "path": "product-core/src/main/kotlin/cn/xindong/core/StyleAndContext.kt",
@@ -333,6 +736,48 @@
       "original_copy_sha256": "5ca2920d4f56954100c8f365461aba7b6c6154da49734f7b2703d9275ad49d11"
     },
     {
+      "path": "product-core/src/main/resources/skills/lian-ai/references/defense-patterns.md",
+      "bytes": 3612,
+      "sha256": "b5226a3ce40a6bd6ef409946ef4de8af161225f99da80b6b68e1641d05cb009f",
+      "original_copy_sha256": "b5226a3ce40a6bd6ef409946ef4de8af161225f99da80b6b68e1641d05cb009f"
+    },
+    {
+      "path": "product-core/src/main/resources/skills/lian-ai/references/research/05-decisions.md",
+      "bytes": 2188,
+      "sha256": "ef2cbc7cb4e2dfacd519eed3e5f1d95a978e9ed4c7a384f9b637e33309e3eb5f",
+      "original_copy_sha256": "ef2cbc7cb4e2dfacd519eed3e5f1d95a978e9ed4c7a384f9b637e33309e3eb5f"
+    },
+    {
+      "path": "product-core/src/main/resources/skills/lian-ai/references/research/06-timeline.md",
+      "bytes": 3372,
+      "sha256": "a11f61542f9067dc39156a4a0791b25714590ddc8b958d1f310f04a105bbb454",
+      "original_copy_sha256": "a11f61542f9067dc39156a4a0791b25714590ddc8b958d1f310f04a105bbb454"
+    },
+    {
+      "path": "product-core/src/main/resources/skills/lian-ai/references/research/08-supplement-2026.md",
+      "bytes": 13043,
+      "sha256": "c4daf98515204f84349ac1a825ab038c7c5411143bf716858c978aac6dc81036",
+      "original_copy_sha256": "c4daf98515204f84349ac1a825ab038c7c5411143bf716858c978aac6dc81036"
+    },
+    {
+      "path": "product-core/src/main/resources/skills/lian-ai/references/safety-protocol.md",
+      "bytes": 2038,
+      "sha256": "90ee279f66b63aa40a662c9d8f5da0d945e9200ca4f4e0d0110676afa265a2c5",
+      "original_copy_sha256": "90ee279f66b63aa40a662c9d8f5da0d945e9200ca4f4e0d0110676afa265a2c5"
+    },
+    {
+      "path": "product-core/src/main/resources/skills/lian-ai/references/六个核心心智模型.md",
+      "bytes": 5889,
+      "sha256": "8725411a9b32d79b60f194534e0cf7679dee8570d9769a38603509d14889d546",
+      "original_copy_sha256": "8725411a9b32d79b60f194534e0cf7679dee8570d9769a38603509d14889d546"
+    },
+    {
+      "path": "product-core/src/main/resources/skills/lian-ai/references/回答协议.md",
+      "bytes": 2019,
+      "sha256": "5b2d914e9f9b9df46b0ca5d5ab9c477faad9c75df7e061eb7c7adb49eec421d8",
+      "original_copy_sha256": "5b2d914e9f9b9df46b0ca5d5ab9c477faad9c75df7e061eb7c7adb49eec421d8"
+    },
+    {
       "path": "product-core/src/main/resources/skills/lian-ai/SKILL.md",
       "bytes": 11454,
       "sha256": "1106450995b8c5f5f133d61adeed2592521485b2cb334702c978946ed4322257",
@@ -340,9 +785,9 @@
     },
     {
       "path": "product-core/src/test/kotlin/cn/xindong/core/CoreTest.kt",
-      "bytes": 16476,
-      "sha256": "e4131d62df3d1669c6a2107849bcf5e9095d3a6e3c38ffe2afc0451177d47dcc",
-      "original_copy_sha256": "e4131d62df3d1669c6a2107849bcf5e9095d3a6e3c38ffe2afc0451177d47dcc"
+      "bytes": 17806,
+      "sha256": "8a885beeea950275550aab60db360a52037a2bc6078b7b734821cfc6c3cf41f7",
+      "original_copy_sha256": "8a885beeea950275550aab60db360a52037a2bc6078b7b734821cfc6c3cf41f7"
     },
     {
       "path": "product-core/src/test/kotlin/cn/xindong/core/HistoryPipelineTest.kt",
@@ -376,9 +821,15 @@
     },
     {
       "path": "product-core/src/test/kotlin/cn/xindong/core/SkillOutputTest.kt",
-      "bytes": 4991,
-      "sha256": "335699a6ef8c1fd4ca58964be51398b8f2c343a27fbab011794a0b75daf930f5",
-      "original_copy_sha256": "335699a6ef8c1fd4ca58964be51398b8f2c343a27fbab011794a0b75daf930f5"
+      "bytes": 5587,
+      "sha256": "de5b4157968844ec4a25b203afdabd7b6518b83af21586b4a807303ba25f9fb5",
+      "original_copy_sha256": "de5b4157968844ec4a25b203afdabd7b6518b83af21586b4a807303ba25f9fb5"
+    },
+    {
+      "path": "product-core/src/test/kotlin/cn/xindong/core/StructuredChatTest.kt",
+      "bytes": 3529,
+      "sha256": "6e836ab496d0eea469fa1b3e68071a8298d87e8f91fe231bdcc89be87e099235",
+      "original_copy_sha256": "6e836ab496d0eea469fa1b3e68071a8298d87e8f91fe231bdcc89be87e099235"
     },
     {
       "path": "product-core/src/test/kotlin/cn/xindong/core/StyleLearningTest.kt",
@@ -387,28 +838,10 @@
       "original_copy_sha256": "6e265a4001bc75e6c30fd5da4a1293701b11db14b76fc324eb9d138a767aca81"
     },
     {
-      "path": "qa-runner/build.gradle.kts",
-      "bytes": 922,
-      "sha256": "62b4176c14ceea8b2eb0507424b25c34983ecd04c204c7df5d8cb5bea0ee10a8",
-      "original_copy_sha256": "62b4176c14ceea8b2eb0507424b25c34983ecd04c204c7df5d8cb5bea0ee10a8"
-    },
-    {
-      "path": "qa-runner/gradle.lockfile",
-      "bytes": 1896,
-      "sha256": "d7d954b5a5a4ff483d4f45a0ad27ed9838ac6e937d62d89195a36ffed452134c",
-      "original_copy_sha256": "1181ec1b90a461496c9af9e2b201a8b7c57fc06271fad79597d6d98c3d61ef96"
-    },
-    {
-      "path": "qa-runner/src/main/kotlin/cn/xindong/core/QaCli.kt",
-      "bytes": 14699,
-      "sha256": "8f3f0261711f82b453b3364c4b423c4bb8024ed42a90953f6bde6a3876a12749",
-      "original_copy_sha256": "8f3f0261711f82b453b3364c4b423c4bb8024ed42a90953f6bde6a3876a12749"
-    },
-    {
-      "path": "qa-runner/src/main/kotlin/cn/xindong/core/SampleCli.kt",
-      "bytes": 8112,
-      "sha256": "c099b64b99d1a283897099f37fb09ec4bea48e31c704fb4db6ed2e1c4d1a02f0",
-      "original_copy_sha256": "c099b64b99d1a283897099f37fb09ec4bea48e31c704fb4db6ed2e1c4d1a02f0"
+      "path": "qa/batch-config-template.json",
+      "bytes": 1089,
+      "sha256": "afe178faa3322e520446d0dc83e288731e5846d6f0fa420de7bcc3e8971a6888",
+      "original_copy_sha256": "1c7dd7a070d1fca708a143a6ba09c2c4adeae5ba9f1d8563f7932659e1e669ee"
     },
     {
       "path": "qa/cases.jsonl",
@@ -417,10 +850,22 @@
       "original_copy_sha256": "c5f73f2922786d930903368a1e0d52c6bf8b0e3188a7c1e40419a49cc6ea8b1b"
     },
     {
+      "path": "qa/config-jev-template.json",
+      "bytes": 1586,
+      "sha256": "222f3a753f000095225d5d07dd1fdcaf0c11ccc1546dfaa32278bcfa7dad1700",
+      "original_copy_sha256": "af07c251375940e51595135265317b3fafd104f5a3eaab1ee282ba138b6f75ec"
+    },
+    {
       "path": "qa/config-template.json",
       "bytes": 1584,
       "sha256": "a37c074e8fae6912e5ccc92767f03cd9b79a0daeb2a05284e9234655c96a0985",
       "original_copy_sha256": "a37c074e8fae6912e5ccc92767f03cd9b79a0daeb2a05284e9234655c96a0985"
+    },
+    {
+      "path": "qa/dialogue-quality-v2.jsonl",
+      "bytes": 4919728,
+      "sha256": "794fa366dbb8fbc6860828bdab94a4ae69e5704ad1c926a4dfb6f31e8c4a93c4",
+      "original_copy_sha256": "d242de2fd690216106839e6346598b9d68a134e8afd9620ffec218b44b479646"
     },
     {
       "path": "qa/dialogue-samples.jsonl",
@@ -436,9 +881,15 @@
     },
     {
       "path": "qa/judge.html",
-      "bytes": 9140,
-      "sha256": "adce02d25a9609df1909ccea8ec10bb927c23d38520fe47bdc435613ad78fe99",
-      "original_copy_sha256": "adce02d25a9609df1909ccea8ec10bb927c23d38520fe47bdc435613ad78fe99"
+      "bytes": 9464,
+      "sha256": "1ae838fbacc16a556a87e7c1eb7ed41594c4e989f4f3c1054e489fe128c5208f",
+      "original_copy_sha256": "1ae838fbacc16a556a87e7c1eb7ed41594c4e989f4f3c1054e489fe128c5208f"
+    },
+    {
+      "path": "qa/manifest-v2.json",
+      "bytes": 676,
+      "sha256": "730a812ab28dea22386f3a392ea59f0469025197f634154e69356900afdc844a",
+      "original_copy_sha256": "846508b8914ccbe7967f8ddc1f95ca0f5ce060c3b4cb9a85dfddc5ba2f9df96c"
     },
     {
       "path": "qa/manifest.json",
@@ -447,22 +898,94 @@
       "original_copy_sha256": "dcf063886dac7d07cc913fb8d71d77c4ac2c9b01c23eacf2c9df9e79961ed0d2"
     },
     {
+      "path": "qa/quality-review-template.html",
+      "bytes": 10843,
+      "sha256": "1948d08de4aede385ec0e595afae36a44f5d958e20de3fc95d656cbe162a6ec2",
+      "original_copy_sha256": "1948d08de4aede385ec0e595afae36a44f5d958e20de3fc95d656cbe162a6ec2"
+    },
+    {
       "path": "qa/sample-config-template.json",
-      "bytes": 1035,
-      "sha256": "334aec64cbcc3b75ca9a000f2c86ffcd7687a83855bbed569b3b7a4d6d6f6f4a",
-      "original_copy_sha256": "334aec64cbcc3b75ca9a000f2c86ffcd7687a83855bbed569b3b7a4d6d6f6f4a"
+      "bytes": 1143,
+      "sha256": "b1c5e881a8ec1515b47820eb776f746c8e9f08e4b35e908be529d3fc13a468a1",
+      "original_copy_sha256": "b1c5e881a8ec1515b47820eb776f746c8e9f08e4b35e908be529d3fc13a468a1"
     },
     {
-      "path": "gradle/wrapper/gradle-wrapper.jar",
-      "bytes": 43705,
-      "sha256": "81a82aaea5abcc8ff68b3dfcb58b3c3c429378efd98e7433460610fecd7ae45f",
-      "original_copy_sha256": "81a82aaea5abcc8ff68b3dfcb58b3c3c429378efd98e7433460610fecd7ae45f"
+      "path": "qa-runner/build.gradle.kts",
+      "bytes": 1276,
+      "sha256": "3307024ebaec362b793f5ce6d560e04a38536c076a8db61eb63f828ddb89a9a2",
+      "original_copy_sha256": "3307024ebaec362b793f5ce6d560e04a38536c076a8db61eb63f828ddb89a9a2"
     },
     {
-      "path": "gradle/wrapper/gradle-wrapper.properties",
-      "bytes": 338,
-      "sha256": "3b6b8df392b92f86332d907707f3d952a32c8d6e1fedabafe2b5ec3d933a78c4",
-      "original_copy_sha256": "3b6b8df392b92f86332d907707f3d952a32c8d6e1fedabafe2b5ec3d933a78c4"
+      "path": "qa-runner/gradle.lockfile",
+      "bytes": 1896,
+      "sha256": "d7d954b5a5a4ff483d4f45a0ad27ed9838ac6e937d62d89195a36ffed452134c",
+      "original_copy_sha256": "1181ec1b90a461496c9af9e2b201a8b7c57fc06271fad79597d6d98c3d61ef96"
+    },
+    {
+      "path": "qa-runner/src/main/kotlin/cn/xindong/core/QaCli.kt",
+      "bytes": 14699,
+      "sha256": "8f3f0261711f82b453b3364c4b423c4bb8024ed42a90953f6bde6a3876a12749",
+      "original_copy_sha256": "8f3f0261711f82b453b3364c4b423c4bb8024ed42a90953f6bde6a3876a12749"
+    },
+    {
+      "path": "qa-runner/src/main/kotlin/cn/xindong/core/QualityBatchCli.kt",
+      "bytes": 19058,
+      "sha256": "e742bf7149bccd9e327016882db1740791617f5646776eb28f40d7b2dfe9d582",
+      "original_copy_sha256": "e742bf7149bccd9e327016882db1740791617f5646776eb28f40d7b2dfe9d582"
+    },
+    {
+      "path": "qa-runner/src/main/kotlin/cn/xindong/core/SampleCli.kt",
+      "bytes": 10203,
+      "sha256": "f8455c04433050eed7f95b7164e8f726d8b5c9fe5707b028f11cecd3112b0a38",
+      "original_copy_sha256": "f8455c04433050eed7f95b7164e8f726d8b5c9fe5707b028f11cecd3112b0a38"
+    },
+    {
+      "path": "research/licenses/goutoujunshi-jev-chat-LICENSE.txt",
+      "bytes": 1086,
+      "sha256": "1fde4d1b2b5b2dc25d83f0e5bf607bd02f10044b7e5642876c5936579cd75dc1",
+      "original_copy_sha256": "1fde4d1b2b5b2dc25d83f0e5bf607bd02f10044b7e5642876c5936579cd75dc1"
+    },
+    {
+      "path": "research/licenses/goutoujunshi-LICENSE.txt",
+      "bytes": 1086,
+      "sha256": "1fde4d1b2b5b2dc25d83f0e5bf607bd02f10044b7e5642876c5936579cd75dc1",
+      "original_copy_sha256": "1fde4d1b2b5b2dc25d83f0e5bf607bd02f10044b7e5642876c5936579cd75dc1"
+    },
+    {
+      "path": "research/licenses/gradle-distribution-LICENSE.txt",
+      "bytes": 23622,
+      "sha256": "9536d88ea948603d18e232a13f5958d67807cd80828036b082bff171d2cf0703",
+      "original_copy_sha256": "9536d88ea948603d18e232a13f5958d67807cd80828036b082bff171d2cf0703"
+    },
+    {
+      "path": "research/licenses/jev-android-LICENSE.txt",
+      "bytes": 1124,
+      "sha256": "58b78820ca197702109653ce87fa07b8f5859c2a9c94e69086347a42f9cb94b7",
+      "original_copy_sha256": "58b78820ca197702109653ce87fa07b8f5859c2a9c94e69086347a42f9cb94b7"
+    },
+    {
+      "path": "research/licenses/jev-android-NOTICE.txt",
+      "bytes": 1134,
+      "sha256": "be59a5693e703458b5771bee8976bcae3194e002a26d02c00531858e96bdbf46",
+      "original_copy_sha256": "be59a5693e703458b5771bee8976bcae3194e002a26d02c00531858e96bdbf46"
+    },
+    {
+      "path": "research/licenses/lian-ai-LICENSE.txt",
+      "bytes": 1077,
+      "sha256": "5ca2920d4f56954100c8f365461aba7b6c6154da49734f7b2703d9275ad49d11",
+      "original_copy_sha256": "5ca2920d4f56954100c8f365461aba7b6c6154da49734f7b2703d9275ad49d11"
+    },
+    {
+      "path": "research/skill-files.json",
+      "bytes": 3964,
+      "sha256": "11bec8ce462b9f7d8834a894210f0391ca07b3e26d4be83a8cffeaa2ed5c471a",
+      "original_copy_sha256": "6c06b86ae0ef5cd97efee6efec80789a5b1c85a07ebf2768ee16f7225a0532d2"
+    },
+    {
+      "path": "research/upstream-lock.json",
+      "bytes": 1329,
+      "sha256": "55a768170f286a41b5b40dd2aac51718abc1ea21e3bebe107042d0633ab4d4ab",
+      "original_copy_sha256": "55a768170f286a41b5b40dd2aac51718abc1ea21e3bebe107042d0633ab4d4ab"
     },
     {
       "path": "scripts/Build-Product.ps1",
@@ -505,6 +1028,18 @@
       "bytes": 4044,
       "sha256": "97654f3b51e5d4887e91b8fc6c20fcceb229f0be84a8ba56d8f5916ddaf80f86",
       "original_copy_sha256": "97654f3b51e5d4887e91b8fc6c20fcceb229f0be84a8ba56d8f5916ddaf80f86"
+    },
+    {
+      "path": "scripts/export_quality_batch.py",
+      "bytes": 7679,
+      "sha256": "25d139a15f4422e00ffc51577cc9ff61d386e6496837b63c68db1b252951c8ae",
+      "original_copy_sha256": "25d139a15f4422e00ffc51577cc9ff61d386e6496837b63c68db1b252951c8ae"
+    },
+    {
+      "path": "scripts/export_ui_screens.py",
+      "bytes": 1995,
+      "sha256": "2560283b8e4bce2eb43b3d8e7a9ffe95c1844869ce1b6c340e3ac5586e3a40be",
+      "original_copy_sha256": "10258960071bc058d2277ba16314d45b385ac65b67d26af65152d7768c662cf0"
     },
     {
       "path": "scripts/Inspect-Apk.ps1",
@@ -555,16 +1090,40 @@
       "original_copy_sha256": "1ce3c18daf253cf2abab8da5ddf1f3c2c1464eee9ac418fc4d318310eaeaf403"
     },
     {
+      "path": "scripts/prepare_quality_v2.py",
+      "bytes": 11147,
+      "sha256": "00369ecd8f54adea2b38fa6093285a814776a34e6e6857cfae0184320d44a0db",
+      "original_copy_sha256": "e66d2268f14c5700b5306c615be77db600f5dcd3bab6d189a5a8fd9411b3495c"
+    },
+    {
       "path": "scripts/Pull-Evidence.ps1",
       "bytes": 2355,
       "sha256": "35480d2621899f8e9410a41f991ef73eb5ee1e28c6c3302099d7f525e32c6383",
       "original_copy_sha256": "35480d2621899f8e9410a41f991ef73eb5ee1e28c6c3302099d7f525e32c6383"
     },
     {
+      "path": "scripts/render_quality_review.py",
+      "bytes": 3761,
+      "sha256": "9b11835b36f90616bea03a90584cc84c5acce55a7aa5a52805f8f5166ca2eaf5",
+      "original_copy_sha256": "9b11835b36f90616bea03a90584cc84c5acce55a7aa5a52805f8f5166ca2eaf5"
+    },
+    {
+      "path": "scripts/review_quality_batch.py",
+      "bytes": 7307,
+      "sha256": "6e3a89bc3ced05cbffd4d886b35c5b94ec364ec3c23a2df751214ff917690e35",
+      "original_copy_sha256": "6e3a89bc3ced05cbffd4d886b35c5b94ec364ec3c23a2df751214ff917690e35"
+    },
+    {
       "path": "scripts/Run-Quality.ps1",
       "bytes": 2758,
       "sha256": "75cd584df069fef0a60aff130eb11d491790a0e104d54fe3cb5ddf386f95caa7",
       "original_copy_sha256": "75cd584df069fef0a60aff130eb11d491790a0e104d54fe3cb5ddf386f95caa7"
+    },
+    {
+      "path": "scripts/Run-QualityBatch.ps1",
+      "bytes": 2487,
+      "sha256": "3b10a0f58c1cf4ee67e27c981257cd374ed90b897e593dfc120d14550f893ec6",
+      "original_copy_sha256": "3b10a0f58c1cf4ee67e27c981257cd374ed90b897e593dfc120d14550f893ec6"
     },
     {
       "path": "scripts/Run-Samples.ps1",
@@ -574,15 +1133,39 @@
     },
     {
       "path": "scripts/score_quality.py",
-      "bytes": 5552,
-      "sha256": "1a8375b6c9afea4145dd218271489afac2bab9c802dee6f9746553cf5c7eb670",
-      "original_copy_sha256": "1a8375b6c9afea4145dd218271489afac2bab9c802dee6f9746553cf5c7eb670"
+      "bytes": 6838,
+      "sha256": "7f7c08865cd12122775078eda897f9894a01439dae10d4c6d52508f12e61db14",
+      "original_copy_sha256": "7f7c08865cd12122775078eda897f9894a01439dae10d4c6d52508f12e61db14"
+    },
+    {
+      "path": "scripts/stop_quality_batch.py",
+      "bytes": 4298,
+      "sha256": "d2783e9f2c73415e9f2e3ec024471ae2cf9be27ff3fbd3bbfaa32920c74fffda",
+      "original_copy_sha256": "d2783e9f2c73415e9f2e3ec024471ae2cf9be27ff3fbd3bbfaa32920c74fffda"
     },
     {
       "path": "scripts/Test-ProductEmulator.ps1",
-      "bytes": 3348,
-      "sha256": "a941d05150da2ddb969d306957a07bda84607aba439f66e87b05e1395ff106dc",
-      "original_copy_sha256": "a941d05150da2ddb969d306957a07bda84607aba439f66e87b05e1395ff106dc"
+      "bytes": 3505,
+      "sha256": "d29871119c7a1fcb6654e86b85be168b679992844b1a35667a43a2911d618362",
+      "original_copy_sha256": "d29871119c7a1fcb6654e86b85be168b679992844b1a35667a43a2911d618362"
+    },
+    {
+      "path": "scripts/Test-ProductUiMatrix.ps1",
+      "bytes": 3800,
+      "sha256": "34d060afce0dda28639a3a2fa18056fc588bf377ce8c2b63aa79d5fd8b93f764",
+      "original_copy_sha256": "6a73af089552e95ff2add00029c4f810720cc32c79e188b5214fed80a5fb731e"
+    },
+    {
+      "path": "scripts/tests/test_compare_evidence.py",
+      "bytes": 9519,
+      "sha256": "ccbf255527b1d26f669c8a5ac8f168717255c464d425eb20cfea7d94dc008de1",
+      "original_copy_sha256": "ccbf255527b1d26f669c8a5ac8f168717255c464d425eb20cfea7d94dc008de1"
+    },
+    {
+      "path": "scripts/tests/test_quality.py",
+      "bytes": 10634,
+      "sha256": "16a86e5403de7d16938c237bfdc679fa0be5dcd235dd7f1387883f2dc5d0228c",
+      "original_copy_sha256": "16a86e5403de7d16938c237bfdc679fa0be5dcd235dd7f1387883f2dc5d0228c"
     },
     {
       "path": "scripts/verify_baseline.py",
@@ -597,310 +1180,22 @@
       "original_copy_sha256": "081647e2e0333d5ed2b6848429cd93540bce88d536fe273edc56cc9c061f0f01"
     },
     {
-      "path": "scripts/tests/test_compare_evidence.py",
-      "bytes": 9519,
-      "sha256": "ccbf255527b1d26f669c8a5ac8f168717255c464d425eb20cfea7d94dc008de1",
-      "original_copy_sha256": "ccbf255527b1d26f669c8a5ac8f168717255c464d425eb20cfea7d94dc008de1"
+      "path": "scripts/verify_ui_contrast.py",
+      "bytes": 2905,
+      "sha256": "978ef8d3d31a8ae0ae1a5f7a27737a2ae041a7a74b4dab1152adf6d0c094dcef",
+      "original_copy_sha256": "9a82ca687d598298b5fbfbb9cdcd8fabd666d1979a9d6ad98ae966f2c4dbcf9a"
     },
     {
-      "path": "scripts/tests/test_quality.py",
-      "bytes": 7489,
-      "sha256": "96838e59202625f59840a983dbf18d57f04660c0dcea56525bca506818379e64",
-      "original_copy_sha256": "96838e59202625f59840a983dbf18d57f04660c0dcea56525bca506818379e64"
-    },
-    {
-      "path": "docs/AI_PIPELINE.md",
-      "bytes": 7988,
-      "sha256": "2326314c235366f2bff288667a23f9ffbe8cfbd088e62ed6814530240052bdb6",
-      "original_copy_sha256": "2326314c235366f2bff288667a23f9ffbe8cfbd088e62ed6814530240052bdb6"
-    },
-    {
-      "path": "docs/AI_QUALITY_TEST_REPORT.md",
-      "bytes": 7597,
-      "sha256": "b240a7c3a85fb4855db2d77dd1345e6980e4d07ffae38cca05e1234f46aa209e",
-      "original_copy_sha256": "2f4c44c940d5289bbc405437e9af18e4b390b13a77951c0be66e5b5dda694880"
-    },
-    {
-      "path": "docs/ARCHITECTURE.md",
-      "bytes": 6940,
-      "sha256": "e93ec3634fb09a6b808eb86843adc35e0945532f2a94d84fe5a6d3505e450504",
-      "original_copy_sha256": "e93ec3634fb09a6b808eb86843adc35e0945532f2a94d84fe5a6d3505e450504"
-    },
-    {
-      "path": "docs/CHANGE_REQUEST_20261012.md",
-      "bytes": 10103,
-      "sha256": "3583f10f2dcf46761c2133cfb0ea3bbf90ade32b406cf46098eebfbf5c5774c3",
-      "original_copy_sha256": "5c9bca6b10a493b60ab379e27fee29e874c7e59d6bf1f53488a60ed20afa5ecd"
-    },
-    {
-      "path": "docs/CONFIG_AND_DIALOGUE_CHECK_20261013.md",
-      "bytes": 6481,
-      "sha256": "b15f405c5168b24cf44e8cad77f2ee9a2e07eb756bc05f84f78a1d5bfd91edc1",
-      "original_copy_sha256": "b15f405c5168b24cf44e8cad77f2ee9a2e07eb756bc05f84f78a1d5bfd91edc1"
-    },
-    {
-      "path": "docs/DELIVERY_0.2.0.md",
-      "bytes": 3226,
-      "sha256": "ed4342338140af19db78a7f04b32fbb3ed041234eadcc019e020db5673d0995b",
-      "original_copy_sha256": "6b7e80c13f947dd2dfb2f53f18aa9055a6c118732aa0c733b8d44945054fe482"
-    },
-    {
-      "path": "docs/DELIVERY_0.3.0.md",
-      "bytes": 4397,
-      "sha256": "91ef5a6363398c9470da52d6cf22c414e16b528b7fabf170664e2a4f666526cc",
-      "original_copy_sha256": "91ef5a6363398c9470da52d6cf22c414e16b528b7fabf170664e2a4f666526cc"
-    },
-    {
-      "path": "docs/DELIVERY_0.3.1.md",
-      "bytes": 3011,
-      "sha256": "b32fc5b63761906c653a4f78bfb132aba455f3982b8635cd3f8f3e4017d1c8fd",
-      "original_copy_sha256": "b32fc5b63761906c653a4f78bfb132aba455f3982b8635cd3f8f3e4017d1c8fd"
-    },
-    {
-      "path": "docs/DELIVERY_0.3.2.md",
-      "bytes": 5348,
-      "sha256": "fa630ee4a19082938c9b3926b01b26c2217d3defe6b5a676f54ffde235559d0f",
-      "original_copy_sha256": "fa630ee4a19082938c9b3926b01b26c2217d3defe6b5a676f54ffde235559d0f"
-    },
-    {
-      "path": "docs/DELIVERY_0.3.3.md",
-      "bytes": 1292,
-      "sha256": "93f3a2fd0dfadcc084dbeeea3409ea9d263c34b85be02a4984631a678bdd983e",
-      "original_copy_sha256": "93f3a2fd0dfadcc084dbeeea3409ea9d263c34b85be02a4984631a678bdd983e"
-    },
-    {
-      "path": "docs/ENVIRONMENT_REPORT.md",
-      "bytes": 7666,
-      "sha256": "890d044cc64cb9e51509f408fae85b637f2931fad5ef2aeb9d8e804e84dadbee",
-      "original_copy_sha256": "b471b9e0cf642382c9a5624b509fffd06da3331b5bd507b717bdebb1f2f2a9f6"
-    },
-    {
-      "path": "docs/FOREGROUND_MESSAGE_ACCEPTANCE.md",
-      "bytes": 5149,
-      "sha256": "88e5845bb20f623206cb371aa37014158926ac2f872722753597b0623e2d5867",
-      "original_copy_sha256": "a6621abf9e1f09c6c3c80a3386ddfdb79c0eb074a6fe93e1de58f846f406e9c8"
-    },
-    {
-      "path": "docs/G0_DEVICE_BASELINE.md",
-      "bytes": 2478,
-      "sha256": "38d2294c3b8fd4915cd6ec43b90547d1171269b104dac452e92fd2bf0147aa3a",
-      "original_copy_sha256": "38d2294c3b8fd4915cd6ec43b90547d1171269b104dac452e92fd2bf0147aa3a"
-    },
-    {
-      "path": "docs/G1_ARCHITECTURE.md",
-      "bytes": 5561,
-      "sha256": "990b4339193f7e7441c6e709808907656e366c888f2a90ea4881aceac351b287",
-      "original_copy_sha256": "990b4339193f7e7441c6e709808907656e366c888f2a90ea4881aceac351b287"
-    },
-    {
-      "path": "docs/G1_P0_REPORT.md",
-      "bytes": 6329,
-      "sha256": "e1ea73bcb9258c529cb1842e8238b4d5418e9b6983c62aaecd0d3c077822978c",
-      "original_copy_sha256": "608f1f892081967827ebf9a6cdc9ef251cf5eeefea7257193a92444bdfbb7ffc"
-    },
-    {
-      "path": "docs/G1_REAL_DEVICE_REPORT.md",
-      "bytes": 20574,
-      "sha256": "648eace527f8d9ad9df83f0f12130ad8b4d61508c8b9dca478b346487fad94f9",
-      "original_copy_sha256": "648eace527f8d9ad9df83f0f12130ad8b4d61508c8b9dca478b346487fad94f9"
-    },
-    {
-      "path": "docs/G1_TEST_MATRIX.md",
-      "bytes": 5981,
-      "sha256": "89f679776c9568a17271ce5cd26c028248f2310baec2e693721b8f39114c0237",
-      "original_copy_sha256": "89f679776c9568a17271ce5cd26c028248f2310baec2e693721b8f39114c0237"
-    },
-    {
-      "path": "docs/INSTALL_AND_REAL_DEVICE_TEST.md",
-      "bytes": 15280,
-      "sha256": "a3a112bba614d48e69153e1a467b4b9da5eb8d5488ea8c6bcef8f57621008d71",
-      "original_copy_sha256": "a3a112bba614d48e69153e1a467b4b9da5eb8d5488ea8c6bcef8f57621008d71"
-    },
-    {
-      "path": "docs/JEV_COST_ESTIMATE_20261014.md",
-      "bytes": 2566,
-      "sha256": "1263a447af25c6d505622335309b195e0d25e103f171716bbfbcbabb2936e7e4",
-      "original_copy_sha256": "1263a447af25c6d505622335309b195e0d25e103f171716bbfbcbabb2936e7e4"
-    },
-    {
-      "path": "docs/KNOWN_ISSUES.md",
-      "bytes": 6518,
-      "sha256": "35fafe0999d83bd97a3d1bdb6b0c146ad92fe0d5dc9584aa1f9a7b1d2c64c523",
-      "original_copy_sha256": "d7405a6d487552df519f15d2ec5a0dc0efd2b8d5deae376cb39babdc783f9703"
-    },
-    {
-      "path": "docs/PRD_V1.0.md",
-      "bytes": 13626,
-      "sha256": "cfe5b345322db00812a1c05524c1eecf3208009609142acab25aacd27f2743f0",
-      "original_copy_sha256": "cfe5b345322db00812a1c05524c1eecf3208009609142acab25aacd27f2743f0"
-    },
-    {
-      "path": "docs/PRODUCT_INSTALL.md",
-      "bytes": 8147,
-      "sha256": "3620f95f565a1764cd75942e7ed2102b863b717b3c836db0886e212adebf788e",
-      "original_copy_sha256": "478ed9437bba55f54c99bf808859bc735aba037eddc51918e8d2d5d955cd19d1"
-    },
-    {
-      "path": "docs/PRODUCT_REAL_DEVICE_REPORT_20261013.md",
-      "bytes": 14191,
-      "sha256": "b8b40f55715ecf7ff4d780065cde823cda712d6cc33e921f3dff04b804788c41",
-      "original_copy_sha256": "b8b40f55715ecf7ff4d780065cde823cda712d6cc33e921f3dff04b804788c41"
-    },
-    {
-      "path": "docs/REQUIREMENTS_LOCKED.md",
-      "bytes": 7681,
-      "sha256": "e6af94810df0bc8eddea79eecf91cd4dfefd2e2e1c266e0540de1e912467d3a8",
-      "original_copy_sha256": "22d2b6a93e4d69f170b941bfc1194722491967716f7f20aeda4ba137d7352128"
-    },
-    {
-      "path": "docs/REQUIREMENTS_STATUS.md",
-      "bytes": 4508,
-      "sha256": "819d821974b0b9f0cde8a2c20259cde627df11eef8dd17ba66f0a3a7560a9917",
-      "original_copy_sha256": "f85f101a8d29ff881884189780025232f482ab1da4eaf84be9ff969611dc84c6"
-    },
-    {
-      "path": "docs/RISKS_AND_CONFLICTS.md",
-      "bytes": 4494,
-      "sha256": "11125f91a0b139f5b6fd30d008deb434c092e856f3eec9d3df25e2444c6daa43",
-      "original_copy_sha256": "11125f91a0b139f5b6fd30d008deb434c092e856f3eec9d3df25e2444c6daa43"
-    },
-    {
-      "path": "docs/STATUS.md",
-      "bytes": 5385,
-      "sha256": "c64e504b0403f3f7d940a7a8e52e1177afc71a11537b9a963beffdd4fc491438",
-      "original_copy_sha256": "f8d961c8b179ec2aa87aa53a1d9f15ab6367f4346c056e2eeebfa159dbd9836f"
-    },
-    {
-      "path": "docs/TEST_MATRIX.md",
-      "bytes": 4476,
-      "sha256": "a174317f1a5fec761bdbb28a59fe04926f969ab1a4929f442475a47b4d4c6b96",
-      "original_copy_sha256": "4cf4fba5900f098d1e4862334816b809cd2153fff0b1dd7787fac4c464cbde06"
-    },
-    {
-      "path": "docs/TEST_REPORT.md",
-      "bytes": 18335,
-      "sha256": "c830ac250edb1e8309499d949ff3d0188b275f7c014f50dabaf2697fc5aad035",
-      "original_copy_sha256": "916718f932d21428d492063065352a422c7326d4d32678edd8bbe5733ba6da5e"
-    },
-    {
-      "path": "docs/THIRD_PARTY.md",
-      "bytes": 3419,
-      "sha256": "390be77df61aee98af61fb5085be6fb0e1df7b26b35f95d68a805dc10a5eabed",
-      "original_copy_sha256": "390be77df61aee98af61fb5085be6fb0e1df7b26b35f95d68a805dc10a5eabed"
-    },
-    {
-      "path": "docs/UPSTREAM_RESEARCH.md",
-      "bytes": 6664,
-      "sha256": "f55610b3fab65f419fbac52dc7563665356cdc015d99ada2d260e2b9bf591326",
-      "original_copy_sha256": "f55610b3fab65f419fbac52dc7563665356cdc015d99ada2d260e2b9bf591326"
-    },
-    {
-      "path": "docs/WECHAT_DATA_ACCESS_ASSESSMENT_20261013.md",
-      "bytes": 4907,
-      "sha256": "4f6e8c1d301e6fb2ef7535ef2c8957e8fd07763156813dbcceeeaa7900483d6c",
-      "original_copy_sha256": "4f6e8c1d301e6fb2ef7535ef2c8957e8fd07763156813dbcceeeaa7900483d6c"
-    },
-    {
-      "path": ".gitattributes",
-      "bytes": 306,
-      "sha256": "76cf11bd262a54a994b0991806e5b684ddf233d10c9b7ed403a8f6d531586f20",
-      "original_copy_sha256": "76cf11bd262a54a994b0991806e5b684ddf233d10c9b7ed403a8f6d531586f20"
-    },
-    {
-      "path": "CODEX_MASTER_PROMPT.md",
-      "bytes": 18618,
-      "sha256": "2034bc47ffac16b126ed4d6dd5e1082d387751a061a41d890759125a7f4be070",
-      "original_copy_sha256": "2034bc47ffac16b126ed4d6dd5e1082d387751a061a41d890759125a7f4be070"
-    },
-    {
-      "path": "build.gradle.kts",
-      "bytes": 2579,
-      "sha256": "82a688408fa582b8a26963b6bc9bbf2fa1c1ad7ff1072abbf4d893ab682bf0c0",
-      "original_copy_sha256": "82a688408fa582b8a26963b6bc9bbf2fa1c1ad7ff1072abbf4d893ab682bf0c0"
+      "path": "scripts/write_quality_report.py",
+      "bytes": 9038,
+      "sha256": "042fed5d4d572c2a54111759a7138e584f246eafa76be5f1d38c4fcf71610b4c",
+      "original_copy_sha256": "042fed5d4d572c2a54111759a7138e584f246eafa76be5f1d38c4fcf71610b4c"
     },
     {
       "path": "settings.gradle.kts",
       "bytes": 365,
       "sha256": "5dc5aec02895de90b756f465944eb7c0ddbb4e3408c38cc40cfbcabbcc86fdaf",
       "original_copy_sha256": "5dc5aec02895de90b756f465944eb7c0ddbb4e3408c38cc40cfbcabbcc86fdaf"
-    },
-    {
-      "path": "gradle.properties",
-      "bytes": 280,
-      "sha256": "4a6f5a006813e7b630e4612aea3de71a1facbbde58ec07479f690d032f99e520",
-      "original_copy_sha256": "4a6f5a006813e7b630e4612aea3de71a1facbbde58ec07479f690d032f99e520"
-    },
-    {
-      "path": "gradlew",
-      "bytes": 8752,
-      "sha256": "734b3879d3501dce471cf0522d3bcbafe76873d9fc5129345b67fb43bd15e933",
-      "original_copy_sha256": "734b3879d3501dce471cf0522d3bcbafe76873d9fc5129345b67fb43bd15e933"
-    },
-    {
-      "path": "gradlew.bat",
-      "bytes": 2966,
-      "sha256": "57931b17dd228e5c24dac90e815d0bf82477e831a4618dfab4136f5446b42a9f",
-      "original_copy_sha256": "57931b17dd228e5c24dac90e815d0bf82477e831a4618dfab4136f5446b42a9f"
-    },
-    {
-      "path": "research/upstream-lock.json",
-      "bytes": 1329,
-      "sha256": "55a768170f286a41b5b40dd2aac51718abc1ea21e3bebe107042d0633ab4d4ab",
-      "original_copy_sha256": "55a768170f286a41b5b40dd2aac51718abc1ea21e3bebe107042d0633ab4d4ab"
-    },
-    {
-      "path": "research/skill-files.json",
-      "bytes": 3964,
-      "sha256": "11bec8ce462b9f7d8834a894210f0391ca07b3e26d4be83a8cffeaa2ed5c471a",
-      "original_copy_sha256": "6c06b86ae0ef5cd97efee6efec80789a5b1c85a07ebf2768ee16f7225a0532d2"
-    },
-    {
-      "path": "research/licenses/goutoujunshi-jev-chat-LICENSE.txt",
-      "bytes": 1086,
-      "sha256": "1fde4d1b2b5b2dc25d83f0e5bf607bd02f10044b7e5642876c5936579cd75dc1",
-      "original_copy_sha256": "1fde4d1b2b5b2dc25d83f0e5bf607bd02f10044b7e5642876c5936579cd75dc1"
-    },
-    {
-      "path": "research/licenses/goutoujunshi-LICENSE.txt",
-      "bytes": 1086,
-      "sha256": "1fde4d1b2b5b2dc25d83f0e5bf607bd02f10044b7e5642876c5936579cd75dc1",
-      "original_copy_sha256": "1fde4d1b2b5b2dc25d83f0e5bf607bd02f10044b7e5642876c5936579cd75dc1"
-    },
-    {
-      "path": "research/licenses/gradle-distribution-LICENSE.txt",
-      "bytes": 23622,
-      "sha256": "9536d88ea948603d18e232a13f5958d67807cd80828036b082bff171d2cf0703",
-      "original_copy_sha256": "9536d88ea948603d18e232a13f5958d67807cd80828036b082bff171d2cf0703"
-    },
-    {
-      "path": "research/licenses/jev-android-LICENSE.txt",
-      "bytes": 1124,
-      "sha256": "58b78820ca197702109653ce87fa07b8f5859c2a9c94e69086347a42f9cb94b7",
-      "original_copy_sha256": "58b78820ca197702109653ce87fa07b8f5859c2a9c94e69086347a42f9cb94b7"
-    },
-    {
-      "path": "research/licenses/jev-android-NOTICE.txt",
-      "bytes": 1134,
-      "sha256": "be59a5693e703458b5771bee8976bcae3194e002a26d02c00531858e96bdbf46",
-      "original_copy_sha256": "be59a5693e703458b5771bee8976bcae3194e002a26d02c00531858e96bdbf46"
-    },
-    {
-      "path": "research/licenses/lian-ai-LICENSE.txt",
-      "bytes": 1077,
-      "sha256": "5ca2920d4f56954100c8f365461aba7b6c6154da49734f7b2703d9275ad49d11",
-      "original_copy_sha256": "5ca2920d4f56954100c8f365461aba7b6c6154da49734f7b2703d9275ad49d11"
-    },
-    {
-      "path": "evidence/templates/ground_truth.csv",
-      "bytes": 139,
-      "sha256": "bc54ebc05b1ddc24059d9bc6941808818e7a26fc31493319e475e2a719f0da1c",
-      "original_copy_sha256": "bc54ebc05b1ddc24059d9bc6941808818e7a26fc31493319e475e2a719f0da1c"
-    },
-    {
-      "path": "evidence/templates/scenario_manifest.csv",
-      "bytes": 201,
-      "sha256": "a1dd96d647457dfc05aad191a85e3aaa465c7737faabdd72eea3e16c10d2bf0f",
-      "original_copy_sha256": "a1dd96d647457dfc05aad191a85e3aaa465c7737faabdd72eea3e16c10d2bf0f"
     }
   ]
 }

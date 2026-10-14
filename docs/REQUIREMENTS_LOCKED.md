@@ -1,5 +1,8 @@
 # 冻结需求追踪
 
+本页实现状态为0.2.0历史索引快照；原冻结要求列保持原文含义。当前实现状态见REQUIREMENTS_STATUS.md，用户后续CR-04/CR-20261014-05分别调整输入方式及Jev默认策略。当前双Skill开启、Jev可选默认关闭，原PRD/Master字节未改，不能用本页历史“调用0”当作当前事实。
+
+
 原始文档 CODEX_MASTER_PROMPT.md、docs/PRD_V1.0.md 完整保留；以原文为准，本表是索引而非删减版需求。`python scripts/verify_baseline.py` 校验两份原始文件 SHA256，并将每一非空行及行号保存为 reports/baseline-index.json（M-L行号、P-L行号）。该索引中的文字不表示功能已经实现。
 
 用户2026-10-12授权研发，之后已连接真机。S05B后用户明确选择主动读取当前聊天、授权导入补齐完整历史、缺失提示，已记录CHANGE_REQUEST_20261012.md。这是对原P0接入方式/覆盖承诺的显式变更，原冻结文档未修改；其余产品指标继续保留。用户随后以 CR-20261012-02 授权在手机测试暂缓期间继续独立研发；本表状态更新至 0.2.0-development，逐项证据见 REQUIREMENTS_STATUS.md / TEST_MATRIX.md。授权继续研发不等于 G1 通过。

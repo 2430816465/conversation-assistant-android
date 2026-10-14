@@ -59,9 +59,12 @@ class Vault(private val context: Context) {
     }
     private fun owner(account: String) { require(unlocked==account) { "请先解锁对应本地账户" } }
     fun accounts(): List<AccountEntry> = list("account","catalog").map { AccountEntry(Account(it.getString("id"),it.getString("name")),it.getString("salt"),it.getString("digest")) }
-    fun createAccount(name: String, pin: CharArray): Account {
-        require(name.isNotBlank()); val salt=LocalPin.salt(); val digest=LocalPin.digest(pin,salt); val account=Account(name=name)
-        put("account","catalog",account.id,JSONObject().put("id",account.id).put("name",name)
+    @Synchronized fun createAccount(name: String, pin: CharArray): Account {
+        val login=name.trim()
+        require(login.isNotBlank() && login.length<=40) { "账号名称需为1至40个字符" }
+        require(accounts().none { it.account.name.trim().equals(login,ignoreCase=true) }) { "这个本机账号已存在，请直接登录或换一个名称" }
+        val salt=LocalPin.salt(); val digest=try { LocalPin.digest(pin,salt) } finally { pin.fill('\u0000') }; val account=Account(name=login)
+        put("account","catalog",account.id,JSONObject().put("id",account.id).put("name",login)
             .put("salt",Base64.encodeToString(salt,Base64.NO_WRAP)).put("digest",Base64.encodeToString(digest,Base64.NO_WRAP)))
         unlocked=account.id; return account
     }
@@ -69,10 +72,19 @@ class Vault(private val context: Context) {
     @Synchronized fun unlock(account: Account, pin: CharArray) {
         require(android.os.SystemClock.elapsedRealtime()>=nextUnlock) { "口令尝试过于频繁，请稍后再试" }
         val entry=accounts().single { it.account.id==account.id }
-        if(!LocalPin.matches(pin,Base64.decode(entry.salt,Base64.NO_WRAP),Base64.decode(entry.digest,Base64.NO_WRAP))) {
+        val matches=try { LocalPin.matches(pin,Base64.decode(entry.salt,Base64.NO_WRAP),Base64.decode(entry.digest,Base64.NO_WRAP)) } finally { pin.fill('\u0000') }
+        if(!matches) {
             failedUnlocks++; nextUnlock=android.os.SystemClock.elapsedRealtime()+minOf(60_000L,1000L*failedUnlocks*failedUnlocks); error("本地账户口令不正确")
         }; failedUnlocks=0; unlocked=account.id
         streamers(account.id).forEach { host -> conversations(host).forEach(::purgeUnreferencedBlobs) }
+    }
+    @Synchronized fun changePassword(account: Account, old: CharArray, next: CharArray) {
+        owner(account.id)
+        require(next.size>=6) { "新密码至少6位" }
+        unlock(account,old)
+        val salt=LocalPin.salt(); val digest=try { LocalPin.digest(next,salt) } finally { next.fill('\u0000') }
+        put("account","catalog",account.id,JSONObject().put("id",account.id).put("name",account.name)
+            .put("salt",Base64.encodeToString(salt,Base64.NO_WRAP)).put("digest",Base64.encodeToString(digest,Base64.NO_WRAP)))
     }
     fun lock() { unlocked=null }
     fun streamers(account: String): List<Streamer> { owner(account); return list("streamer",account).map { Streamer(it.getString("id"),account,it.getString("name")) } }

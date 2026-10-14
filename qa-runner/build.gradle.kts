@@ -15,3 +15,10 @@ tasks.register<JavaExec>("runSamples") {
     jvmArgs("-Dfile.encoding=UTF-8", "-Dsun.stdout.encoding=UTF-8", "-Dsun.stderr.encoding=UTF-8")
     System.getenv("XINDONG_SAMPLE_ARGS")?.let { raw -> args(raw.split("|").filter { it.isNotBlank() }) }
 }
+
+tasks.register<JavaExec>("runQualityBatch") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("cn.xindong.core.QualityBatchCli")
+    jvmArgs("-Dfile.encoding=UTF-8", "-Dsun.stdout.encoding=UTF-8", "-Dsun.stderr.encoding=UTF-8")
+    System.getenv("XINDONG_QA_ARGS")?.let { raw -> args(raw.split("|").filter { it.isNotBlank() }) }
+}

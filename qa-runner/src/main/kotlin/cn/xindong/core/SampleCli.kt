@@ -47,7 +47,7 @@ object SampleCli {
         }
         val skills=SkillLibrary.bundled()
         val publicSettings=settings.json().also { it.objects("profiles").forEach { profile -> profile.remove("apiKey") } }
-        val check=JSONObject().put("protocol","SYNTHETIC_DUAL_SKILL_SAMPLE_V2").put("architecture","DUAL_SKILL_V1").put("case_count",cases.size)
+        val check=JSONObject().put("protocol","SYNTHETIC_DUAL_SKILL_SAMPLE_V3").put("architecture","DUAL_SKILL_V1").put("case_count",cases.size)
             .put("cases_sha256",sha256(Files.readAllBytes(casesPath))).put("settings",publicSettings)
             .put("settings_sha256",sha256(publicSettings.toString().toByteArray(Charsets.UTF_8)))
             .put("skill_sha256",JSONObject().put("goutou",sha256(skills.goutou.toByteArray(Charsets.UTF_8)))
@@ -58,6 +58,8 @@ object SampleCli {
             "须取得本批双Skill虚构材料云端测试授权；不因Jev可选而绕过云端范围确认"
         }
         val cap=config.getLong("sampleCapMicroRmb"); require(cap in 1..2_000_000L)
+        val prior=config.optLong("knownPreviousSampleEstimateMicroRmb")
+        require(prior in 0..(2_000_000L-cap)) { "含此前小样本费用的上限不得超过2元" }
         val out=Path.of(opts["--out"] ?: error("缺少输出目录")).toAbsolutePath().normalize()
         require(out.any { it.toString()=="private" }) { "输出须存放private目录" }
         Files.createDirectories(out.parent)
@@ -67,14 +69,17 @@ object SampleCli {
             write(out.resolve("ledger.json"),JSONObject().put("rows",arr(rows.map(::charge))).put("limits",JSONObject(limits)))
         }
         val audit=check.put("started_at",System.currentTimeMillis()).put("sample_cap_micro_rmb",cap)
+            .put("known_previous_sample_estimate_micro_rmb",prior).put("synthetic_responses_saved_privately",true)
             .put("known_previous_phone_estimate_micro_rmb",config.optLong("knownPreviousPhoneEstimateMicroRmb"))
             .put("phone_config_modified",false).put("formal_pairs_generated",0)
         write(out.resolve("plan.json"),audit)
         val completed=mutableListOf<String>(); val attempted=mutableListOf<String>(); val states=mutableListOf<JSONObject>()
+        val failures=mutableListOf<JSONObject>()
         val cancel=CancelToken(); val shutdown=Thread { cancel.cancel() }; Runtime.getRuntime().addShutdownHook(shutdown)
         fun summary(state: String, error: String="") = write(out.resolve("summary.json"),JSONObject()
             .put("state",state).put("completed",arr(completed)).put("attempted",arr(attempted)).put("requested",cases.size)
-            .put("calls",ledger.entries().size).put("usage_estimate_micro_rmb",ledger.spent(month)).put("provider_bill_verified",false)
+            .put("calls",ledger.entries().size).put("usage_estimate_micro_rmb",ledger.spent(month))
+            .put("combined_sample_estimate_micro_rmb",prior+ledger.spent(month)).put("failures",arr(failures)).put("provider_bill_verified",false)
             .put("formal_acceptance",false).put("human_grading",false).put("error",error).put("updated_at",System.currentTimeMillis()))
         try {
             cases.forEachIndexed { index,case ->
@@ -83,7 +88,21 @@ object SampleCli {
                 val c=conversations[index]
                 val tail=c.messages.sortedBy { it.order }.takeLastWhile { it.speaker==Speaker.CONTACT }
                 val target=ReplyTarget(c.scope,tail.map { it.id },tail.map { it.revision }).validate(c)
-                val round=AnalysisEngine(HttpGateway(),ledger,skills).run(c,Streamer(c.scope.streamerId,c.scope.accountId,"虚构测试主播"),
+                // Only this synthetic-only, private-output CLI records response text. Never record keys, headers or requests.
+                val gateway=object: Gateway {
+                    private val delegate=HttpGateway()
+                    override fun chat(config: ModelConfig, system: String, user: String, cancel: CancelToken, progress: (String)->Unit): ModelReply {
+                        val reply=delegate.chat(config,system,user,cancel,progress)
+                        val charge=ledger.entries().last()
+                        write(out.resolve("$id-response-${charge.id}.json"),JSONObject().put("case",id).put("component",charge.component)
+                            .put("model",reply.model).put("text",reply.text).put("text_sha256",sha256(reply.text.toByteArray(Charsets.UTF_8))))
+                        return reply
+                    }
+                    override fun jev(config: ModelConfig, state: JSONObject, cancel: CancelToken): ModelReply =
+                        error("双Skill样本不调用Jev")
+                }
+                try {
+                val round=AnalysisEngine(gateway,ledger,skills).run(c,Streamer(c.scope.streamerId,c.scope.accountId,"虚构测试主播"),
                     listOf(c),settings,case.getString("query"),cancel,progress={ println("$id $it") },component={ component ->
                         states.add(JSONObject().put("case",id).put("name",component.name).put("state",component.state)
                             .put("detail",component.detail).put("diagnostic",component.diagnostic ?: JSONObject.NULL))
@@ -92,9 +111,15 @@ object SampleCli {
                     },replyTarget=target)
                 write(out.resolve("$id.json"),round.json().put("case_input_sha256",sha256(case.toString().toByteArray(Charsets.UTF_8))))
                 completed.add(id); summary("IN_PROGRESS")
+                } catch(e: SkillOutputFailure) {
+                    failures.add(JSONObject().put("case",id).put("error",AnalysisEngine.safeError(e)).put("diagnostic",e.diagnostic))
+                    summary("IN_PROGRESS")
+                    if(!config.optBoolean("continueIndependentCasesAfterSkillValidationFailure")) throw e
+                    println("$id 结构校验失败；本组未采用，不重新开始本组，继续下一个独立样本")
+                }
             }
-            summary("GENERATED_AWAITING_REVIEW")
-            println("本批完成${completed.size}组，费用估算微元=${ledger.spent(month)}；等待逐条审阅，不自动宣布质量通过。")
+            summary(if(failures.isEmpty()) "GENERATED_AWAITING_REVIEW" else "GENERATED_WITH_FAILURES_AWAITING_REVIEW")
+            println("本批生成${completed.size}组，失败${failures.size}组，费用估算微元=${ledger.spent(month)}；等待逐条审阅，不自动宣布质量通过。")
         } catch(e: Exception) { summary("INCOMPLETE",AnalysisEngine.safeError(e)); throw e }
         finally { Runtime.getRuntime().removeShutdownHook(shutdown) }
     }

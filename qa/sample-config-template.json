@@ -2,6 +2,8 @@
   "dualSkillCloudTestAuthorized": false,
   "sampleCapMicroRmb": 2000000,
   "knownPreviousPhoneEstimateMicroRmb": 0,
+  "knownPreviousSampleEstimateMicroRmb": 0,
+  "continueIndependentCasesAfterSkillValidationFailure": false,
   "settings": {
     "profiles": [
       {

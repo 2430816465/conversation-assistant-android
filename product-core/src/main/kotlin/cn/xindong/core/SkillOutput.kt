@@ -27,6 +27,9 @@ object SkillOutput {
 "strategy":"基于当前资料的建议及理由","risks":[],"disagreements":[]}
 facts与hypotheses是对象数组；每个对象的text是非空字符串，evidence_ids是消息ID字符串数组。facts每项必须至少引用一条真实输入消息，hypotheses可以无引用。
 unknowns、risks、disagreements是字符串数组；strategy是非空字符串。无可靠事实或推测时相应数组为空。
+仅history中的本观众消息及带来源的memory可支持facts；host_style的计数、格式统计和系统覆盖信息不是聊天事实，不要为这些元数据生成无引用fact，也不要随意借用消息ID。
+提交前检查整个json可解析：字符串用双引号，strategy是一个字符串而非数组，字符串末尾不要添加多余的右方括号。不要复写全部历史；围绕reply_target列出相关事实、推测与未知。
+无可引用事实时的合法JSON示例：{"facts":[],"hypotheses":[],"unknowns":["未提供语音转写，内容未知"],"strategy":"先核对未知内容，避免臆造","risks":[],"disagreements":[]}
 """.trimIndent()
 
     fun parse(component: String, text: String, allowedIds: Set<String>): JSONObject {

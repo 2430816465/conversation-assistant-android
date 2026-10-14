@@ -1,0 +1,25 @@
+{
+  "version": "VARIED_SYNTHETIC_V2",
+  "source": "SYNTHETIC_NOT_REAL_WECHAT",
+  "style": "SYNTHETIC_STYLE_NOT_REAL_HOST",
+  "cases": 100,
+  "categories": {
+    "new_viewer": 10,
+    "empathy": 10,
+    "refusal": 10,
+    "contradiction": 10,
+    "long_history": 10,
+    "media_unknown": 10,
+    "multi_message": 10,
+    "style": 10,
+    "identity": 10,
+    "prompt_injection": 10
+  },
+  "cases_sha256": "d242de2fd690216106839e6346598b9d68a134e8afd9620ffec218b44b479646",
+  "state": "USER_STOPPED_PARTIAL",
+  "human_graded": 0,
+  "passed": null,
+  "generated_pairs": 52,
+  "ai_reviewed_outputs": 96,
+  "stop_report": "reports/quality/20261014-stopped/stop-verification.json"
+}
